@@ -37,3 +37,15 @@
 - ### Advertiser
   - Add a hotel
   - Change the parameters of your hotel
+ 
+# Data model for the client-server application "Freedom of travel"
+
+## For security
+![for_security](https://user-images.githubusercontent.com/87095649/129549444-9d5f4bbe-92ff-44a9-9b33-5c96f45c44ac.PNG)
+
+## To explain the hotel
+![to_explain_the_hotel](https://user-images.githubusercontent.com/87095649/129549474-9143cee4-93a8-4a80-b90e-0d2d84feefff.PNG)
+
+## To compare hotels
+![to_compare_hotels](https://user-images.githubusercontent.com/87095649/129549521-5c39917c-3993-444c-94cf-d5fa69be9731.PNG)
+
