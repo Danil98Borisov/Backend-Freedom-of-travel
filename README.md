@@ -37,3 +37,9 @@
 - ### Advertiser
   - Add a hotel
   - Change the parameters of your hotel
+ 
+# Data model for the client-server application "Freedom of travel"
+
+## To explain the hotel
+![to_explain_the_hotel](https://user-images.githubusercontent.com/87095649/129778915-a65efff9-c1ae-4905-aa5e-85b56799d968.PNG)
+
