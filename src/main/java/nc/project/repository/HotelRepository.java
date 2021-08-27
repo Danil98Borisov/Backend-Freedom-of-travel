@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Long>{
-
     @Query(value = "SELECT * FROM hotel WHERE rating>?", nativeQuery = true)
     List<Hotel> findHotelByRating(int rating);
 }
