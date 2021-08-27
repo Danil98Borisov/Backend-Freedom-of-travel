@@ -19,6 +19,4 @@ public class HotelController {
 
         return hotelRepository.findHotelByRating(rating);
     }
-
 }
-
