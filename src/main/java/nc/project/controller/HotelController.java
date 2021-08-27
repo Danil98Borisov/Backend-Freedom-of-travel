@@ -10,13 +10,4 @@ import java.util.List;
 
 @RestController
 public class HotelController {
-    @Autowired
-    private HotelRepository hotelRepository;
-
-
-    @GetMapping("/hotels/filter")
-    List<Hotel> dateHotel(@RequestParam (required = false, defaultValue = "0") int rating){
-
-        return hotelRepository.findHotelByRating(rating);
-    }
 }
