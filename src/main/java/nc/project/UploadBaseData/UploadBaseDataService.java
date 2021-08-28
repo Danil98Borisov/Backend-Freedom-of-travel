@@ -2,7 +2,7 @@ package nc.project.UploadBaseData;
 
 import nc.project.models.Hotel;
 import nc.project.models.Reservation;
-import nc.project.models.Room;
+import nc.project.models.Apartment;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -16,7 +16,7 @@ public interface UploadBaseDataService {
 
     List<Hotel> getHotelList();
 
-    List<Room> getRoomList();
+    List<Apartment> getApartmentList();
 
     List<Reservation> getReservationList();
 
