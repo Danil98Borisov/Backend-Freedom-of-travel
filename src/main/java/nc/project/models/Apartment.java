@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table (name = "room")
-public class Room {
+public class Apartment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,17 +53,17 @@ public class Room {
         this.hotel = hotel;
     }
 
-    public Room(){}
+    public Apartment(){}
 
-    public Room(Hotel hotel) {
+    public Apartment(Hotel hotel) {
         this.hotel = hotel;
     }
 
-    public Room(Long id) {
+    public Apartment(Long id) {
         this.id = id;
     }
 
-    public Room(Long id, Hotel hotel, String type, float price) {
+    public Apartment(Long id, Hotel hotel, String type, float price) {
         this.id = id;
         this.hotel = hotel;
         this.type = type;
