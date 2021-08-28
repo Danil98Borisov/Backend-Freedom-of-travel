@@ -7,7 +7,7 @@
 - Read information about each hotel
 - Filter hotels by location/number of visitors/date/number of visitors/hotel rating, etc.
 - Add/edit/delete a reservation
-- Compare room conditions for other hotels
+- Compare apartment conditions for other hotels
 - Authorization (login to your Personal account)
 
 Extra features:
@@ -16,10 +16,10 @@ Extra features:
 ## Roles:
 - ### User
   - Filter hotels by parameters
-  - Book a room, cancel a reservation
+  - Book a apartment, cancel a reservation
   - Add to favorites
   - Write reviews about the hotel / rating
-  - Compare room conditions for other hotels
+  - Compare apartment conditions for other hotels
   - Сhange the page language
   - Get a discount
   - Selecting the search area on the map  

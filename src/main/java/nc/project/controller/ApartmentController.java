@@ -1,7 +1,7 @@
 package nc.project.controller;
 
-import nc.project.models.Room;
-import nc.project.repository.RoomRepository;
+import nc.project.models.Apartment;
+import nc.project.repository.ApartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RoomController {
+public class ApartmentController {
     @Autowired
-    private RoomRepository roomRepository;
+    private ApartmentRepository apartmentRepository;
 
     @GetMapping("/apartments")
-    public Iterable<Room> findAll() {
+    public Iterable<Apartment> findAll() {
 
-        return roomRepository.findAll();
+        return apartmentRepository.findAll();
     }
 
     @PutMapping("/apartments/edit")
-    Room editRoom(@RequestBody Room room) {
-        return roomRepository.save(room);
+    Apartment editApartment(@RequestBody Apartment apartment) {
+        return apartmentRepository.save(apartment);
     }
 }
