@@ -5,18 +5,32 @@ import nc.project.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @RestController
 public class HotelController {
+
     @Autowired
     private HotelRepository hotelRepository;
 
+    @GetMapping("/hotels")
+    public Iterable<Hotel> findAll() {
+        return hotelRepository.findAll();
+    }
 
-    @GetMapping("/hotels/filter")
-    List<Hotel> dateHotel(@RequestParam (required = false, defaultValue = "0") int rating){
+    @PutMapping("/hotels/add")
+    Hotel addHotel(@RequestBody Hotel hotel) {
+        return hotelRepository.save(hotel);
+    }
 
-        return hotelRepository.findHotelByRating(rating);
+
+    @PutMapping("/hotels/edit")
+    Hotel editHotel(@RequestBody Hotel hotel) {
+        return hotelRepository.save(hotel);
+    }
+
+    @DeleteMapping("/hotels/delete/{id}")
+    void deleteHotel(@PathVariable Long id) {
+        hotelRepository.deleteById(id);
     }
 }
+

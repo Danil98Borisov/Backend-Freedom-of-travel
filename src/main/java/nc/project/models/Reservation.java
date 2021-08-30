@@ -20,8 +20,8 @@ public class Reservation {
     private Hotel hotel;
 
     @ManyToOne
-    @JoinColumn(name = "roomid")
-    private Room room;
+    @JoinColumn(name = "apartmentid")
+    private Apartment apartment;
 
     @Column(name = "start_date")
     private LocalDate start_date;
@@ -48,12 +48,12 @@ public class Reservation {
         this.hotel = hotel;
     }
 
-    public Room getRoom() {
-        return room;
+    public Apartment getRoom() {
+        return apartment;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setRoom(Apartment apartment) {
+        this.apartment = apartment;
     }
 
     public LocalDate getStartDate() {
@@ -80,10 +80,10 @@ public class Reservation {
         this.status = status;
     }
 
-    public Reservation(Long id, Hotel hotel, Room room, LocalDate start_date, LocalDate end_date, String status) {
+    public Reservation(Long id, Hotel hotel, Apartment apartment, LocalDate start_date, LocalDate end_date, String status) {
         this.id = id;
         this.hotel = hotel;
-        this.room = room;
+        this.apartment = apartment;
         this.start_date = start_date;
         this.end_date = end_date;
         this.status = status;
