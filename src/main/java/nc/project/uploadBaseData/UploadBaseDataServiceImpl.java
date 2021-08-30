@@ -2,8 +2,8 @@ package nc.project.uploadBaseData;
 
 
 import lombok.RequiredArgsConstructor;
-import nc.project.const_enum.ReservationStatusEnum;
-import nc.project.const_enum.ApartmentTypeEnum;
+import nc.project.const_enum.ReservationStatus;
+import nc.project.const_enum.ApartmentType;
 import nc.project.models.Apartment;
 import nc.project.models.Hotel;
 import nc.project.models.Reservation;
@@ -60,19 +60,19 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
 
     public List<Apartment> getApartmentList() {
         List<Apartment> apartmentList = new ArrayList<>();
-        ApartmentTypeEnum roomTypeEnum = null;
+        ApartmentType roomTypeEnum = null;
 
-        apartmentList.add(new Apartment(1L, new Hotel(4L), ApartmentTypeEnum.SINGLE.name(), 100));
-        apartmentList.add(new Apartment(2L, new Hotel(7L), ApartmentTypeEnum.DOUBLE.name(), 80));
-        apartmentList.add(new Apartment(3L, new Hotel(9L), ApartmentTypeEnum.TRIPLE.name(), 45));
-        apartmentList.add(new Apartment(4L, new Hotel(4L), ApartmentTypeEnum.TRIPLE.name(), 123));
-        apartmentList.add(new Apartment(5L, new Hotel(1L), ApartmentTypeEnum.DOUBLE.name(), 21));
-        apartmentList.add(new Apartment(6L, new Hotel(7L), ApartmentTypeEnum.DOUBLE.name(), 37));
-        apartmentList.add(new Apartment(7L, new Hotel(8L), ApartmentTypeEnum.SINGLE.name(), 144));
-        apartmentList.add(new Apartment(8L, new Hotel(2L), ApartmentTypeEnum.SINGLE.name(), 34));
-        apartmentList.add(new Apartment(9L, new Hotel(3L), ApartmentTypeEnum.TRIPLE.name(), 111));
-        apartmentList.add(new Apartment(10L, new Hotel(5L), ApartmentTypeEnum.TRIPLE.name(), 19));
-        apartmentList.add(new Apartment(11L, new Hotel(10L), ApartmentTypeEnum.TRIPLE.name(), 140));
+        apartmentList.add(new Apartment(1L, new Hotel(4L), ApartmentType.SINGLE.name(), 100));
+        apartmentList.add(new Apartment(2L, new Hotel(7L), ApartmentType.DOUBLE.name(), 80));
+        apartmentList.add(new Apartment(3L, new Hotel(9L), ApartmentType.TRIPLE.name(), 45));
+        apartmentList.add(new Apartment(4L, new Hotel(4L), ApartmentType.TRIPLE.name(), 123));
+        apartmentList.add(new Apartment(5L, new Hotel(1L), ApartmentType.DOUBLE.name(), 21));
+        apartmentList.add(new Apartment(6L, new Hotel(7L), ApartmentType.DOUBLE.name(), 37));
+        apartmentList.add(new Apartment(7L, new Hotel(8L), ApartmentType.SINGLE.name(), 144));
+        apartmentList.add(new Apartment(8L, new Hotel(2L), ApartmentType.SINGLE.name(), 34));
+        apartmentList.add(new Apartment(9L, new Hotel(3L), ApartmentType.TRIPLE.name(), 111));
+        apartmentList.add(new Apartment(10L, new Hotel(5L), ApartmentType.TRIPLE.name(), 19));
+        apartmentList.add(new Apartment(11L, new Hotel(10L), ApartmentType.TRIPLE.name(), 140));
         return apartmentList;
     }
 
@@ -80,13 +80,13 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
 
     public List<Reservation> getReservationList() {
         List<Reservation> reservationList = new ArrayList<>();
-        ReservationStatusEnum reservationStatusEnum = null;
+        ReservationStatus reservationStatus = null;
 
-        reservationList.add(new Reservation(1L, new Hotel(9L), new Apartment(3L), LocalDate.parse("2021-01-03",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-01-03",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatusEnum.BOOKED.name()));
-        reservationList.add(new Reservation(2L, new Hotel(4L), new Apartment(4L), LocalDate.parse("2021-03-06",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-03-20",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatusEnum.BOOKED.name()));
-        reservationList.add(new Reservation(3L, new Hotel(4L), new Apartment(1L), LocalDate.parse("2021-03-05",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-03-10",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatusEnum.BOOKED.name()));
-        reservationList.add(new Reservation(4L, new Hotel(1L), new Apartment(5L), LocalDate.parse("2021-04-08",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-04-19",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatusEnum.BOOKED.name()));
-        reservationList.add(new Reservation(5L, new Hotel(7L), new Apartment(2L), LocalDate.parse("2021-07-05",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-07-08",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatusEnum.BOOKED.name()));
+        reservationList.add(new Reservation(1L, new Hotel(9L), new Apartment(3L), LocalDate.parse("2021-01-03",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-01-03",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
+        reservationList.add(new Reservation(2L, new Hotel(4L), new Apartment(4L), LocalDate.parse("2021-03-06",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-03-20",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
+        reservationList.add(new Reservation(3L, new Hotel(4L), new Apartment(1L), LocalDate.parse("2021-03-05",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-03-10",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
+        reservationList.add(new Reservation(4L, new Hotel(1L), new Apartment(5L), LocalDate.parse("2021-04-08",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-04-19",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
+        reservationList.add(new Reservation(5L, new Hotel(7L), new Apartment(2L), LocalDate.parse("2021-07-05",DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-07-08",DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
         return reservationList;
 
     }

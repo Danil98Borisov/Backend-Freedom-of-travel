@@ -1,10 +1,11 @@
 package nc.project.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table (name = "room")
-public class Apartment {
+@Table (name = "apartment")
+public class Apartment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

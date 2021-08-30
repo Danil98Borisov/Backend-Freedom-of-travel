@@ -16,11 +16,11 @@ public class Reservation {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="hotelid")
+    @JoinColumn(name="hotel_id")
     private Hotel hotel;
 
     @ManyToOne
-    @JoinColumn(name = "apartmentid")
+    @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
     @Column(name = "start_date")

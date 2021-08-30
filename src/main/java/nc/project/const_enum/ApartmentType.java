@@ -1,6 +1,6 @@
 package nc.project.const_enum;
 
-public enum ApartmentTypeEnum {
+public enum ApartmentType {
     SINGLE,
     DOUBLE,
     TRIPLE;
