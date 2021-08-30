@@ -19,6 +19,7 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long>{
             "and (:rating is null or h.rating > :rating)" +
             "and (:city = '' or h.city = :city) " +
             "and (:apartmentType = '' or ap.type = :apartmentType) " +
+            "and (:price is null or ap.price < :price) " +
             "and not exists  " +
             " (select 1 from reservation resrv " +
             "   where resrv.start_date >= :startDate " +
@@ -29,6 +30,7 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long>{
                                                              @Param("endDate") LocalDate endDate,
                                                              @Param("city") String city,
                                                              @Param("rating") Integer rating,
-                                                             @Param("apartmentType") String apartmentType);
+                                                             @Param("apartmentType") String apartmentType,
+                                                             @Param("price") Float price);
 
 }

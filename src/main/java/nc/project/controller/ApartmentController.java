@@ -34,12 +34,14 @@ public class ApartmentController {
                                                              @RequestParam String endDate,
                                                              @RequestParam(required = false, defaultValue = "0") int rating,
                                                              @RequestParam(required = false, defaultValue = "") String city,
-                                                             @RequestParam(required = false) ApartmentType apartmentType) {
+                                                             @RequestParam(required = false) ApartmentType apartmentType,
+                                                             @RequestParam(required = false, defaultValue = "10000000") float price) {
         return apartmentRepository.findAvailableAppartmentsByRatingAndDates(
                 LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 city,
                 rating,
-                apartmentType != null ? apartmentType.name() : "");
+                apartmentType != null ? apartmentType.name() : "",
+                price);
     }
 }
