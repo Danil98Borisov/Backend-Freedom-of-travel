@@ -1,5 +1,6 @@
 package nc.project.uploadBaseData;
 
+import nc.project.models.Apartment;
 import nc.project.models.Hotel;
 import nc.project.models.Reservation;
 import nc.project.models.Apartment;
@@ -16,7 +17,7 @@ public interface UploadBaseDataService {
 
     List<Hotel> getHotelList();
 
-    List<Apartment> getApartmentList();
+    List<Apartment> getRoomList();
 
     List<Reservation> getReservationList();
 
