@@ -1,7 +1,11 @@
 package nc.project;
 
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import nc.project.uploadBaseData.UploadBaseDataService;
+=======
+import nc.project.UploadBaseData.UploadBaseDataService;
+>>>>>>> origin/main
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
