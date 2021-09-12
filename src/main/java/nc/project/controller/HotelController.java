@@ -7,30 +7,28 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping("/hotel")
+@CrossOrigin(origins = "http://localhost:4200")
 public class HotelController {
-
     @Autowired
     private HotelRepository hotelRepository;
 
-    @GetMapping("/hotels")
+    @GetMapping
     public Iterable<Hotel> findAll() {
         return hotelRepository.findAll();
     }
 
-    @PutMapping("/hotels/add")
-    Hotel addHotel(@RequestBody Hotel hotel) {
-        return hotelRepository.save(hotel);
-    }
+    @PutMapping("/add")
+    Hotel addHotel(@RequestBody Hotel hotel) {return hotelRepository.save(hotel);}
 
-
-    @PutMapping("/hotels/edit")
+    @PostMapping("/edit")
     Hotel editHotel(@RequestBody Hotel hotel) {
         return hotelRepository.save(hotel);
     }
 
-    @DeleteMapping("/hotels/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteHotel(@PathVariable Long id) {
         hotelRepository.deleteById(id);
     }
-}
 
+}
