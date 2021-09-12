@@ -5,26 +5,23 @@ import nc.project.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 
 @RestController
-@RequestMapping("/hotels")
+@RequestMapping("/hotel")
+@CrossOrigin(origins = "http://localhost:4200")
 public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @GetMapping("/all")
+    @GetMapping
     public Iterable<Hotel> findAll() {
         return hotelRepository.findAll();
     }
 
     @PutMapping("/add")
-    Hotel addHotel(@RequestBody Hotel hotel) {
-        return hotelRepository.save(hotel);
-    }
+    Hotel addHotel(@RequestBody Hotel hotel) {return hotelRepository.save(hotel);}
 
-    @PutMapping("edit")
+    @PostMapping("/edit")
     Hotel editHotel(@RequestBody Hotel hotel) {
         return hotelRepository.save(hotel);
     }

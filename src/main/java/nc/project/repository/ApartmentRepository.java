@@ -1,6 +1,5 @@
 package nc.project.repository;
 
-import nc.project.const_enum.ApartmentType;
 import nc.project.models.Apartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,11 +25,11 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long>{
             "   and resrv.end_date <= :endDate  " +
             "   and resrv.hotel_id = h.id " +
             "   and resrv.apartment_id = ap.id)", nativeQuery = true)
-    List<Apartment> findAvailableAppartmentsByRatingAndDates(@Param("startDate") LocalDate startDate,
-                                                             @Param("endDate") LocalDate endDate,
-                                                             @Param("city") String city,
-                                                             @Param("rating") Integer rating,
-                                                             @Param("apartmentType") String apartmentType,
-                                                             @Param("price") Float price);
+    List<Apartment> findAvailableAppartments(@Param("startDate") LocalDate startDate,
+                                             @Param("endDate") LocalDate endDate,
+                                             @Param("city") String city,
+                                             @Param("rating") Integer rating,
+                                             @Param("apartmentType") String apartmentType,
+                                             @Param("price") Float price);
 
 }

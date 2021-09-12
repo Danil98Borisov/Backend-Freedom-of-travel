@@ -11,19 +11,15 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @RequiredArgsConstructor
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class FreedomOfTravelApplication implements CommandLineRunner{
+
     final private UploadBaseDataService uploadBaseDataService;
 
     public static void main(String[] args) {
-
         SpringApplication.run(FreedomOfTravelApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception{
-
         uploadBaseDataService.uploadBaseData();
-
-
-
     }
 }
