@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping("/api/hotel")
 @CrossOrigin(origins = "http://localhost:4200")
 public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @GetMapping
+    @GetMapping("/all")
     public Iterable<Hotel> findAll() {
         return hotelRepository.findAll();
     }
