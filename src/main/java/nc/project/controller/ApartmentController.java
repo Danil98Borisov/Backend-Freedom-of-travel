@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/apartment")
+@RequestMapping("/api/apartment")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ApartmentController {
 

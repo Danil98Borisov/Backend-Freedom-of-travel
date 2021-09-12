@@ -27,12 +27,11 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
     private final ReservationRepository reservationRepository;
 
 
-    public Map<String, List> createTables() throws ParseException {
+    public Map<String, List> createTables() {
 
         List<Hotel> hotelList = getHotelList();
         List<Apartment> apartmentList = getApartmentList();
         List<Reservation> reservationList = getReservationList();
-
 
         Map<String, List> mapTable = new HashMap();
         mapTable.put("hotel", hotelList);
@@ -59,7 +58,6 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
 
     public List<Apartment> getApartmentList() {
         List<Apartment> apartmentList = new ArrayList<>();
-        ApartmentType roomTypeEnum = null;
 
         apartmentList.add(new Apartment(1L, new Hotel(4L), ApartmentType.SINGLE.name(), 100));
         apartmentList.add(new Apartment(2L, new Hotel(7L), ApartmentType.DOUBLE.name(), 80));
@@ -75,8 +73,6 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
         return apartmentList;
     }
 
-
-
     public List<Reservation> getReservationList() {
         List<Reservation> reservationList = new ArrayList<>();
         ReservationStatus reservationStatus = null;
@@ -89,6 +85,7 @@ public class UploadBaseDataServiceImpl implements UploadBaseDataService {
         return reservationList;
 
     }
+
     public void uploadBaseData () throws ParseException {
         Map<String, List> listTable = createTables();
 

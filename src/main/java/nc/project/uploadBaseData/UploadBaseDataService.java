@@ -17,7 +17,7 @@ public interface UploadBaseDataService {
 
     List<Hotel> getHotelList();
 
-    List<Apartment> getRoomList();
+    List<Apartment> getApartmentList();
 
     List<Reservation> getReservationList();
 }
