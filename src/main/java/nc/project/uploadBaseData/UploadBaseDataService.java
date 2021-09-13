@@ -3,7 +3,6 @@ package nc.project.uploadBaseData;
 import nc.project.models.Apartment;
 import nc.project.models.Hotel;
 import nc.project.models.Reservation;
-import nc.project.models.Apartment;
 
 import java.io.IOException;
 import java.text.ParseException;
