@@ -39,14 +39,13 @@ public class ApartmentController {
     }
 
     @GetMapping("/find")
-    List<Apartment> findAvailableAppartments(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                             @RequestParam(required = false, defaultValue = "0") int rating,
-                                             @RequestParam(required = false, defaultValue = "") String city,
-                                             @RequestParam(required = false) ApartmentType apartmentType,
-                                             @RequestParam(required = false, defaultValue = "10000000") float price) {
-        return apartmentRepository.findAvailableAppartments(startDate, endDate, city, rating,
-                apartmentType != null ? apartmentType.name() : "", price);
+    List<Apartment> findAvailableApartments(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                            @RequestParam(required = false, defaultValue = "0") int rating,
+                                            @RequestParam(required = false, defaultValue = "") String city,
+                                            @RequestParam(required = false) ApartmentType type,
+                                            @RequestParam(required = false, defaultValue = "10000000") float price) {
+        return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price);
     }
 
 }

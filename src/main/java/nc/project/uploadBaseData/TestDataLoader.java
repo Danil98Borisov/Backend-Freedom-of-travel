@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
-public interface UploadBaseDataService {
+public interface TestDataLoader {
     Map<String, List> createTables() throws IOException, ParseException;
 
     void uploadBaseData() throws IOException, ParseException;

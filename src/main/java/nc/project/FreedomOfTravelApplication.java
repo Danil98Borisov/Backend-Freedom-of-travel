@@ -1,8 +1,7 @@
 package nc.project;
 
 import lombok.RequiredArgsConstructor;
-import nc.project.uploadBaseData.UploadBaseDataService;
-import nc.project.uploadBaseData.UploadBaseDataService;
+import nc.project.uploadBaseData.TestDataLoader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +11,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class FreedomOfTravelApplication implements CommandLineRunner{
 
-    final private UploadBaseDataService uploadBaseDataService;
+    final private TestDataLoader uploadBaseDataService;
 
     public static void main(String[] args) {
         SpringApplication.run(FreedomOfTravelApplication.class, args);
