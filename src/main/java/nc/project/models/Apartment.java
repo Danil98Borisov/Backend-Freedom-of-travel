@@ -29,6 +29,9 @@ public class Apartment implements Serializable {
     @Column(name = "price")
     private float price;
 
+    @Column(name = "raster", length = Integer.MAX_VALUE, nullable = true)
+    private byte[] raster;
+
     public Apartment(Long id) {
         this.id = id;
     }

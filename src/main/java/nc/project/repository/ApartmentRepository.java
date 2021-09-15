@@ -32,4 +32,8 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
                                             @Param("apartmentType") String apartmentType,
                                             @Param("price") Float price);
 
+    @Query(value = "select * from apartment  " +
+            "where id = :id ", nativeQuery = true)
+    List<Apartment> detailsApartment(@Param("id") Long id);
+
 }
