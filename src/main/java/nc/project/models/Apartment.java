@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table (name = "apartment")
@@ -29,8 +31,9 @@ public class Apartment implements Serializable {
     @Column(name = "price")
     private float price;
 
-    @Column(name = "raster", length = Integer.MAX_VALUE, nullable = true)
-    private byte[] raster;
+   /* @OneToMany(mappedBy = "apartment")
+    //@JoinColumn(name = "id")
+    private List<ImageApartment> apartmentImages;*/
 
     public Apartment(Long id) {
         this.id = id;

@@ -1,13 +1,16 @@
 package nc.project.repository;
 
 import nc.project.models.Apartment;
+import nc.project.models.ImageApartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
@@ -32,8 +35,9 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
                                             @Param("apartmentType") String apartmentType,
                                             @Param("price") Float price);
 
-    @Query(value = "select * from apartment  " +
-            "where id = :id ", nativeQuery = true)
-    List<Apartment> detailsApartment(@Param("id") Long id);
+/*    @Query(value = "select * from image_apartment as ia, apartment as ap  " +
+            " where ap.id = :id and ia.apartment_id=ap.id", nativeQuery = true)
+    List<ImageApartment> detailsApartment(@Param("id") Long id);*/
+
 
 }
