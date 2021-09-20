@@ -1,17 +1,18 @@
 package nc.project.controller;
 
+import lombok.RequiredArgsConstructor;
 import nc.project.models.Hotel;
 import nc.project.repository.HotelRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/api/hotel")
 @CrossOrigin(origins = "http://localhost:4200")
+@RequiredArgsConstructor
 public class HotelController {
-    @Autowired
-    private HotelRepository hotelRepository;
+
+    private final HotelRepository hotelRepository;
 
     @GetMapping("/all")
     public Iterable<Hotel> findAll() {
