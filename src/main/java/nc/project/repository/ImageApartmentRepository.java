@@ -1,6 +1,5 @@
 package nc.project.repository;
 
-import nc.project.models.Apartment;
 import nc.project.models.ImageApartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +16,6 @@ public interface ImageApartmentRepository extends JpaRepository<ImageApartment, 
     @Query(value = "select * from image_apartment  " +
             " where apartment_id = :apartment_id and flag=1", nativeQuery = true)
     List<ImageApartment> detailsApartmentByFlag(@Param("apartment_id") Integer apartment_id);
+
+    ImageApartment findImageApartmentByApartmentIdAndFlag(Long apartmentId, int flag);
 }

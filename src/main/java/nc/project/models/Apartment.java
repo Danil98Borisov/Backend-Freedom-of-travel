@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table (name = "apartment")
@@ -30,10 +28,6 @@ public class Apartment implements Serializable {
 
     @Column(name = "price")
     private float price;
-
-   /* @OneToMany(mappedBy = "apartment")
-    //@JoinColumn(name = "id")
-    private List<ImageApartment> apartmentImages;*/
 
     public Apartment(Long id) {
         this.id = id;

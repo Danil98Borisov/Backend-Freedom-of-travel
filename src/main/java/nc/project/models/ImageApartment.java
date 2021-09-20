@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name = "image_apartment")
@@ -14,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-/*public class ImageApartment implements Serializable{*/
 public class ImageApartment {
 
     @Id

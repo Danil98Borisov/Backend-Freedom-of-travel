@@ -6,14 +6,13 @@ import nc.project.models.ApartmentPreview;
 import nc.project.models.ImageApartment;
 import nc.project.repository.ApartmentRepository;
 import nc.project.repository.ImageApartmentRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-/*@Repository*/
 @RequiredArgsConstructor
 public class ApartmentPreviewService {
 
@@ -30,7 +29,6 @@ public class ApartmentPreviewService {
             apartmentPreview.setApartment(apartment);
             ImageApartment image = findApartmentImage(allApartmentImages, apartment);
             apartmentPreview.setImageApartment(image);
-
             apartmentPreviews.add(apartmentPreview);
         }
 
@@ -45,5 +43,21 @@ public class ApartmentPreviewService {
             }
         }
         return image;
+    }
+
+    public List<ApartmentPreview> getFilteredApartmentPreviews(LocalDate startDate, LocalDate endDate,
+                                                             String city,  int rating, String apartmentType, float price) {
+        List<Apartment> availableApartments = apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, apartmentType, price);
+
+        List<ApartmentPreview> apartmentPreviews = new ArrayList<>();
+        for (Apartment apartment : availableApartments) {
+            ApartmentPreview apartmentPreview = new ApartmentPreview();
+            apartmentPreview.setApartment(apartment);
+            ImageApartment image = imageApartmentRepository.findImageApartmentByApartmentIdAndFlag(apartment.getId(), 1);
+            apartmentPreview.setImageApartment(image);
+            apartmentPreviews.add(apartmentPreview);
+        }
+
+        return apartmentPreviews;
     }
 }
