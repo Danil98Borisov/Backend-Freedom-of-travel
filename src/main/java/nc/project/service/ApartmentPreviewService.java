@@ -7,11 +7,13 @@ import nc.project.models.ImageApartment;
 import nc.project.repository.ApartmentRepository;
 import nc.project.repository.ImageApartmentRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Service
+/*@Repository*/
 @RequiredArgsConstructor
 public class ApartmentPreviewService {
 
