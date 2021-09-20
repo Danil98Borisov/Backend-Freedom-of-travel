@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ApartmentRepository extends JpaRepository<Apartment, Long>{
+public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
 
     @Query(value = "select * from apartment ap, " +
             "     hotel h " +
@@ -22,14 +22,14 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long>{
             "and not exists  " +
             " (select 1 from reservation resrv " +
             "   where resrv.start_date >= :startDate " +
-            "   and resrv.end_date <= :endDate  " +
+            "   and resrv.end_date <= :endDate " +
             "   and resrv.hotel_id = h.id " +
             "   and resrv.apartment_id = ap.id)", nativeQuery = true)
-    List<Apartment> findAvailableAppartments(@Param("startDate") LocalDate startDate,
-                                             @Param("endDate") LocalDate endDate,
-                                             @Param("city") String city,
-                                             @Param("rating") Integer rating,
-                                             @Param("apartmentType") String apartmentType,
-                                             @Param("price") Float price);
+    List<Apartment> findAvailableApartments(@Param("startDate") LocalDate startDate,
+                                            @Param("endDate") LocalDate endDate,
+                                            @Param("city") String city,
+                                            @Param("rating") Integer rating,
+                                            @Param("apartmentType") String apartmentType,
+                                            @Param("price") Float price);
 
 }

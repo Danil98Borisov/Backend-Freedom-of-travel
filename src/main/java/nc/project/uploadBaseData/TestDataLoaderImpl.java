@@ -19,7 +19,7 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-public class UploadBaseDataServiceImpl implements UploadBaseDataService {
+public class TestDataLoaderImpl implements TestDataLoader {
 
     private final JdbcTemplate jdbcTemplate;
     private final HotelRepository hotelRepository;
