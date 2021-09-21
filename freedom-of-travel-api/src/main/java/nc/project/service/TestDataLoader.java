@@ -1,4 +1,4 @@
-package nc.project.uploadBaseData;
+package nc.project.service;
 
 import nc.project.models.Apartment;
 import nc.project.models.Hotel;
