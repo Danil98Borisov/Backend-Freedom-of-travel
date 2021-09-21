@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>freedom-of-travel</artifactId>
+        <groupId>nc.project</groupId>
+        <version>${revision}</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>freedom-of-travel-app</artifactId>
+
+    <dependencies>
+        <!-- freedom-of-travel-Application -->
+        <dependency>
+            <groupId>nc.project</groupId>
+            <artifactId>freedom-of-travel-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>nc.project</groupId>
+            <artifactId>freedom-of-travel-impl</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>nc.project</groupId>
+            <artifactId>freedom-of-travel-web</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
