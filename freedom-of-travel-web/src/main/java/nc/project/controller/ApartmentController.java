@@ -54,7 +54,9 @@ public class ApartmentController {
                                             @RequestParam(required = false, defaultValue = "10000000") float price) {
         return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price);
     }
-    /*Details*/
+
+
+    /* Details */
     @PostMapping("/edit/image_and_description")
     public ImageApartment editApartmentImageAndDescription(@RequestBody ImageApartment imageApartment) {
         return imageApartmentRepository.save(imageApartment);
@@ -64,4 +66,10 @@ public class ApartmentController {
     public ApartmentDetails detailsApartment(@PathVariable("id") Long id) {
         return apartmentDetailsService.getApartmentDetails(id);
     }
+
+    @PostMapping("/details/edit")
+    public ApartmentDetails detailsApartment(@RequestBody ApartmentDetails apartmentDetails) {
+        return apartmentDetailsService.editApartmentDetails(apartmentDetails);
+    }
+
 }
