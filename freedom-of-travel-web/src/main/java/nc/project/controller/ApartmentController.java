@@ -3,9 +3,11 @@ package nc.project.controller;
 import lombok.RequiredArgsConstructor;
 import nc.project.const_enum.ApartmentType;
 import nc.project.models.Apartment;
+import nc.project.models.ApartmentDetails;
 import nc.project.models.ImageApartment;
 import nc.project.repository.ApartmentRepository;
 import nc.project.repository.ImageApartmentRepository;
+import nc.project.service.ApartmentDetailsService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +22,9 @@ public class ApartmentController {
 
     private final ApartmentRepository apartmentRepository;
     private final ImageApartmentRepository imageApartmentRepository;
+    private final ApartmentDetailsService apartmentDetailsService;
 
+        /*Apartment*/
     @GetMapping("/all")
     public Iterable<Apartment> findAll() {
         return apartmentRepository.findAll();
@@ -41,21 +45,6 @@ public class ApartmentController {
         return apartmentRepository.save(apartment);
     }
 
-    @GetMapping("/details/{id}")
-    List<ImageApartment> detailsApartment(@PathVariable("id") Long id) {
-        return imageApartmentRepository.detailsApartment(id);
-    }
-
-    @GetMapping("/details/all")
-    public Iterable<ImageApartment> findAllDetails() {
-        return imageApartmentRepository.findAll();
-    }
-
-    @GetMapping("/details/flag/{apartment_id}")
-    List<ImageApartment> detailsApartmentByFlag(@PathVariable("apartment_id") int apartment_id) {
-        return imageApartmentRepository.detailsApartmentByFlag(apartment_id);
-    }
-
     @GetMapping("/find")
     List<Apartment> findAvailableApartments(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -65,5 +54,14 @@ public class ApartmentController {
                                             @RequestParam(required = false, defaultValue = "10000000") float price) {
         return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price);
     }
+    /*Details*/
+    @PostMapping("/edit/image_and_description")
+    public ImageApartment editApartmentImageAndDescription(@RequestBody ImageApartment imageApartment) {
+        return imageApartmentRepository.save(imageApartment);
+    }
 
+    @GetMapping("/details/{id}")
+    public ApartmentDetails detailsApartment(@PathVariable("id") Long id) {
+        return apartmentDetailsService.getApartmentDetails(id);
+    }
 }

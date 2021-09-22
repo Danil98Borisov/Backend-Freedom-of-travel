@@ -29,6 +29,9 @@ public class Apartment implements Serializable {
     @Column(name = "price")
     private float price;
 
+    @Column(name = "description")
+    private String description;
+
     public Apartment(Long id) {
         this.id = id;
     }

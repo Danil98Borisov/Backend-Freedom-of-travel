@@ -18,4 +18,6 @@ public interface ImageApartmentRepository extends JpaRepository<ImageApartment, 
     List<ImageApartment> detailsApartmentByFlag(@Param("apartment_id") Integer apartment_id);
 
     ImageApartment findImageApartmentByApartmentIdAndFlag(Long apartmentId, int flag);
+
+    List<ImageApartment> findImageApartmentsByApartmentId(Long apartmentId);
 }
