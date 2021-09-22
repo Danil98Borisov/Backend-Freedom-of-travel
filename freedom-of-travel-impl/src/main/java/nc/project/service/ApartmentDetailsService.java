@@ -28,4 +28,10 @@ public class ApartmentDetailsService {
         });
         return apartmentDetails;
     }
+
+    public ApartmentDetails editApartmentDetails(ApartmentDetails apartmentDetails) {
+        Apartment editedApartment = apartmentRepository.save(apartmentDetails.getApartment());
+        apartmentDetails.setApartment(editedApartment);
+        return apartmentDetails;
+    }
 }
