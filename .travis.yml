@@ -6,4 +6,3 @@ script: mvn clean verify
 
 notification:
   email: danil1998borisov@gmail.com
-  
