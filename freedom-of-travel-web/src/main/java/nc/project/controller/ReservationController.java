@@ -27,7 +27,7 @@ public class ReservationController {
         reservationRepository.deleteById(id);
     }
 
-    @PutMapping("/add")
+    @PostMapping("/add")
     Reservation addReservation(@RequestBody Reservation reservation) {
         return reservationRepository.save(reservation);
     }

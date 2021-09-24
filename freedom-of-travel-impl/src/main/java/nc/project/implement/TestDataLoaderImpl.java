@@ -4,14 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.const_enum.ReservationStatus;
 import nc.project.const_enum.ApartmentType;
-import nc.project.models.Apartment;
-import nc.project.models.Hotel;
-import nc.project.models.ImageApartment;
-import nc.project.models.Reservation;
-import nc.project.repository.HotelRepository;
-import nc.project.repository.ImageApartmentRepository;
-import nc.project.repository.ReservationRepository;
-import nc.project.repository.ApartmentRepository;
+import nc.project.models.*;
+import nc.project.repository.*;
 import nc.project.service.TestDataLoader;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -32,10 +26,10 @@ import java.util.*;
 @RequiredArgsConstructor
 public class TestDataLoaderImpl implements TestDataLoader {
 
-    private final JdbcTemplate jdbcTemplate;
     private final HotelRepository hotelRepository;
     private final ApartmentRepository apartmentRepository;
     private final ImageApartmentRepository imageApartmentRepository;
+    private final ImageHotelRepository imageHotelRepository;
     private final ReservationRepository reservationRepository;
 
     private final String APARTMENT_IMAGES_FULL_PATH = "src/main/resources/apartment-images/";
@@ -374,11 +368,107 @@ public class TestDataLoaderImpl implements TestDataLoader {
         return imageApartmentList;
     }
 
+    public List<ImageHotel> getImageHotelList() {
+        List<ImageHotel> imageHotelList = new ArrayList<>();
 
+        imageHotelList.add(new ImageHotel(1L, new Hotel(1L), convertHotelImage("hotel_1_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(2L, new Hotel(1L), convertHotelImage("hotel_1_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(3L, new Hotel(1L), convertHotelImage("hotel_1_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(4L, new Hotel(2L), convertHotelImage("hotel_2_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(5L, new Hotel(2L), convertHotelImage("hotel_2_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(6L, new Hotel(2L), convertHotelImage("hotel_2_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(7L, new Hotel(3L), convertHotelImage("hotel_3_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(8L, new Hotel(3L), convertHotelImage("hotel_3_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(9L, new Hotel(3L), convertHotelImage("hotel_3_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(10L, new Hotel(4L), convertHotelImage("hotel_4_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(11L, new Hotel(4L), convertHotelImage("hotel_4_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(12L, new Hotel(4L), convertHotelImage("hotel_4_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(13L, new Hotel(5L), convertHotelImage("hotel_5_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(14L, new Hotel(5L), convertHotelImage("hotel_5_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(15L, new Hotel(5L), convertHotelImage("hotel_5_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(16L, new Hotel(6L), convertHotelImage("hotel_6_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(17L, new Hotel(6L), convertHotelImage("hotel_6_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(18L, new Hotel(6L), convertHotelImage("hotel_6_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(19L, new Hotel(7L), convertHotelImage("hotel_7_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(20L, new Hotel(7L), convertHotelImage("hotel_7_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(21L, new Hotel(7L), convertHotelImage("hotel_7_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(22L, new Hotel(8L), convertHotelImage("hotel_8_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(23L, new Hotel(8L), convertHotelImage("hotel_8_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(24L, new Hotel(8L), convertHotelImage("hotel_8_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(25L, new Hotel(9L), convertHotelImage("hotel_9_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(26L, new Hotel(9L), convertHotelImage("hotel_9_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(27L, new Hotel(9L), convertHotelImage("hotel_9_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(28L, new Hotel(10L), convertHotelImage("hotel_10_1.JPG"), 1));
+        imageHotelList.add(new ImageHotel(29L, new Hotel(10L), convertHotelImage("hotel_10_2.JPG"), 0));
+        imageHotelList.add(new ImageHotel(30L, new Hotel(10L), convertHotelImage("hotel_10_3.JPG"), 0));
+        imageHotelList.add(new ImageHotel(31L, new Hotel(11L), convertHotelImage("hotel_11_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(32L, new Hotel(11L), convertHotelImage("hotel_11_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(33L, new Hotel(11L), convertHotelImage("hotel_11_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(34L, new Hotel(12L), convertHotelImage("hotel_12_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(35L, new Hotel(12L), convertHotelImage("hotel_12_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(36L, new Hotel(12L), convertHotelImage("hotel_12_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(37L, new Hotel(13L), convertHotelImage("hotel_13_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(38L, new Hotel(13L), convertHotelImage("hotel_13_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(39L, new Hotel(13L), convertHotelImage("hotel_13_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(40L, new Hotel(14L), convertHotelImage("hotel_14_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(41L, new Hotel(14L), convertHotelImage("hotel_14_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(42L, new Hotel(14L), convertHotelImage("hotel_14_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(43L, new Hotel(15L), convertHotelImage("hotel_15_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(44L, new Hotel(15L), convertHotelImage("hotel_15_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(45L, new Hotel(15L), convertHotelImage("hotel_15_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(46L, new Hotel(16L), convertHotelImage("hotel_16_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(47L, new Hotel(16L), convertHotelImage("hotel_16_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(48L, new Hotel(16L), convertHotelImage("hotel_16_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(49L, new Hotel(17L), convertHotelImage("hotel_17_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(50L, new Hotel(17L), convertHotelImage("hotel_17_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(51L, new Hotel(17L), convertHotelImage("hotel_17_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(52L, new Hotel(18L), convertHotelImage("hotel_18_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(53L, new Hotel(18L), convertHotelImage("hotel_18_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(54L, new Hotel(18L), convertHotelImage("hotel_18_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(55L, new Hotel(19L), convertHotelImage("hotel_19_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(56L, new Hotel(19L), convertHotelImage("hotel_19_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(57L, new Hotel(19L), convertHotelImage("hotel_19_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(58L, new Hotel(20L), convertHotelImage("hotel_20_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(59L, new Hotel(20L), convertHotelImage("hotel_20_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(60L, new Hotel(20L), convertHotelImage("hotel_20_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(61L, new Hotel(21L), convertHotelImage("hotel_21_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(62L, new Hotel(21L), convertHotelImage("hotel_21_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(63L, new Hotel(21L), convertHotelImage("hotel_21_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(64L, new Hotel(22L), convertHotelImage("hotel_22_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(65L, new Hotel(22L), convertHotelImage("hotel_22_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(66L, new Hotel(22L), convertHotelImage("hotel_22_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(67L, new Hotel(23L), convertHotelImage("hotel_23_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(68L, new Hotel(23L), convertHotelImage("hotel_23_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(69L, new Hotel(23L), convertHotelImage("hotel_23_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(70L, new Hotel(24L), convertHotelImage("hotel_24_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(71L, new Hotel(24L), convertHotelImage("hotel_24_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(72L, new Hotel(24L), convertHotelImage("hotel_24_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(72L, new Hotel(25L), convertHotelImage("hotel_25_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(74L, new Hotel(25L), convertHotelImage("hotel_25_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(75L, new Hotel(25L), convertHotelImage("hotel_25_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(76L, new Hotel(26L), convertHotelImage("hotel_26_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(77L, new Hotel(26L), convertHotelImage("hotel_26_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(78L, new Hotel(26L), convertHotelImage("hotel_26_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(79L, new Hotel(27L), convertHotelImage("hotel_27_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(80L, new Hotel(27L), convertHotelImage("hotel_27_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(81L, new Hotel(27L), convertHotelImage("hotel_27_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(82L, new Hotel(28L), convertHotelImage("hotel_28_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(83L, new Hotel(28L), convertHotelImage("hotel_28_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(84L, new Hotel(28L), convertHotelImage("hotel_28_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(85L, new Hotel(29L), convertHotelImage("hotel_29_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(86L, new Hotel(29L), convertHotelImage("hotel_29_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(87L, new Hotel(29L), convertHotelImage("hotel_29_3.JPG"),0));
+        imageHotelList.add(new ImageHotel(88L, new Hotel(30L), convertHotelImage("hotel_30_1.JPG"),1));
+        imageHotelList.add(new ImageHotel(89L, new Hotel(30L), convertHotelImage("hotel_30_2.JPG"),0));
+        imageHotelList.add(new ImageHotel(90L, new Hotel(30L), convertHotelImage("hotel_30_3.JPG"),0));
+
+        return imageHotelList;
+    }
     public void uploadTestData() throws ParseException {
         hotelRepository.saveAll(getHotelList());
         apartmentRepository.saveAll(getApartmentList());
         imageApartmentRepository.saveAll(getImageApartmentList());
+        imageHotelRepository.saveAll(getImageHotelList());
         reservationRepository.saveAll(getReservationList());
     }
 
@@ -394,4 +484,17 @@ public class TestDataLoaderImpl implements TestDataLoader {
         }
         return null;
     }
+
+        public byte[] convertHotelImage(String nameFile) {
+            ClassLoader classLoader = getClass().getClassLoader();
+            URL resource = classLoader.getResource(APARTMENT_IMAGES_PATH + nameFile);
+            try {
+                Path path = Paths.get(resource.toURI());
+                byte[] bytes = Files.readAllBytes(path);
+                return bytes;
+            } catch (URISyntaxException | IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 }
