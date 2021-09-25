@@ -29,6 +29,9 @@ public class Hotel {
     @Column(name = "rating")
     private int rating;
 
+    @Column(name = "description")
+    private String description;
+
     public Hotel(Long id) {
         this.id = id;
     }

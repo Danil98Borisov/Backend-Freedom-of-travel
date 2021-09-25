@@ -7,7 +7,6 @@ import nc.project.const_enum.ApartmentType;
 import nc.project.models.*;
 import nc.project.repository.*;
 import nc.project.service.TestDataLoader;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -32,41 +31,46 @@ public class TestDataLoaderImpl implements TestDataLoader {
     private final ImageHotelRepository imageHotelRepository;
     private final ReservationRepository reservationRepository;
 
-    private final String APARTMENT_IMAGES_FULL_PATH = "src/main/resources/apartment-images/";
     private final String APARTMENT_IMAGES_PATH = "apartment-images/";
+    private final String HOTEL_IMAGES_PATH = "hotel-images/";
 
     public List<Hotel> getHotelList() {
         List<Hotel> hotelList = new ArrayList<>();
-        hotelList.add(new Hotel(1L, "Oka", "NN", 7));
-        hotelList.add(new Hotel(2L, "Azimut", "Kazan", 8));
-        hotelList.add(new Hotel(3L, "Redisson", "MSC", 9));
-        hotelList.add(new Hotel(4L, "Metropol", "NN", 10));
-        hotelList.add(new Hotel(5L, "Noverel", "Krasnodar", 5));
-        hotelList.add(new Hotel(6L, "Mercure", "Tver", 3));
-        hotelList.add(new Hotel(7L, "Petr1", "SPB", 5));
-        hotelList.add(new Hotel(8L, "SkyPoint", "Kazan", 9));
-        hotelList.add(new Hotel(9L, "Izmailovo", "MSC", 2));
-        hotelList.add(new Hotel(10L, "Karely", "Karelia", 10));
-        hotelList.add(new Hotel(11L, "Oka", "Brest", 7));
-        hotelList.add(new Hotel(12L, "Azimut", "Warsaw", 8));
-        hotelList.add(new Hotel(13L, "Redisson", "Vienna", 9));
-        hotelList.add(new Hotel(14L, "Metropol", "Havana", 10));
-        hotelList.add(new Hotel(15L, "Noverel", "Hamburg", 5));
-        hotelList.add(new Hotel(16L, "Mercure", "Donetsk", 3));
-        hotelList.add(new Hotel(17L, "Petr1", "Vienna", 5));
-        hotelList.add(new Hotel(18L, "SkyPoint", "Kazan", 9));
-        hotelList.add(new Hotel(19L, "Izmailovo", "MSC", 2));
-        hotelList.add(new Hotel(20L, "Karely", "Vienna", 10));
-        hotelList.add(new Hotel(21L, "Oka", "NN", 6));
-        hotelList.add(new Hotel(22L, "Azimut", "Warsaw", 8));
-        hotelList.add(new Hotel(23L, "Redisson", "SPB", 9));
-        hotelList.add(new Hotel(24L, "Metropol", "MSC", 10));
-        hotelList.add(new Hotel(25L, "Noverel", "Karelia", 5));
-        hotelList.add(new Hotel(26L, "Mercure", "Tver", 3));
-        hotelList.add(new Hotel(27L, "Petr1", "SPB", 5));
-        hotelList.add(new Hotel(28L, "SkyPoint", "Kazan", 9));
-        hotelList.add(new Hotel(29L, "Izmailovo", "MSC", 2));
-        hotelList.add(new Hotel(30L, "Karely", "Karelia", 10));
+        hotelList.add(new Hotel(1L, "Oka", "NN", 7,null));
+        hotelList.add(new Hotel(2L, "Azimut", "Kazan", 8,null));
+        hotelList.add(new Hotel(3L, "Redisson", "MSC", 9,null));
+        hotelList.add(new Hotel(4L, "Metropol", "NN", 10,null));
+        hotelList.add(new Hotel(5L, "Noverel", "Krasnodar", 5,null));
+        hotelList.add(new Hotel(6L, "Mercure", "Tver", 3,null));
+        hotelList.add(new Hotel(7L, "Petr1", "SPB", 5,null));
+        hotelList.add(new Hotel(8L, "SkyPoint", "Kazan", 9,null));
+        hotelList.add(new Hotel(9L, "Izmailovo", "MSC", 2,null));
+        hotelList.add(new Hotel(10L, "Karely", "Karelia", 10,null));
+        hotelList.add(new Hotel(11L, "Oka", "Brest", 7,null));
+        hotelList.add(new Hotel(12L, "Azimut", "Warsaw", 8,null));
+        hotelList.add(new Hotel(13L, "Redisson", "Vienna", 9,null));
+        hotelList.add(new Hotel(14L, "Metropol", "Havana", 10,null));
+        hotelList.add(new Hotel(15L, "Noverel", "Hamburg", 5,null));
+        hotelList.add(new Hotel(16L, "Mercure", "Donetsk", 3,null));
+        hotelList.add(new Hotel(17L, "Petr1", "Vienna", 5,null));
+        hotelList.add(new Hotel(18L, "SkyPoint", "Kazan", 9,null));
+        hotelList.add(new Hotel(19L, "Izmailovo", "MSC", 2,null));
+        hotelList.add(new Hotel(20L, "Karely", "Vienna", 10,null));
+        hotelList.add(new Hotel(21L, "Oka", "NN", 6,null));
+        hotelList.add(new Hotel(22L, "Azimut", "Warsaw", 8,null));
+        hotelList.add(new Hotel(23L, "Redisson", "SPB", 9,null));
+        hotelList.add(new Hotel(24L, "Metropol", "MSC", 10,null));
+        hotelList.add(new Hotel(25L, "Noverel", "Karelia", 5,null));
+        hotelList.add(new Hotel(26L, "Mercure", "Tver", 3,null));
+        hotelList.add(new Hotel(27L, "Petr1", "SPB", 5,null));
+        hotelList.add(new Hotel(28L, "SkyPoint", "Kazan", 9,null));
+        hotelList.add(new Hotel(29L, "Izmailovo", "MSC", 2,null));
+        hotelList.add(new Hotel(30L, "Karely", "Karelia", 10,null));
+
+        for (Hotel hotel: hotelList) {
+            hotel.setDescription(hotel.getId() + " " + hotel.getCity() + " " + hotel.getRating() + " " + hotel.getHotelName());
+        }
+
         return hotelList;
     }
 
@@ -487,7 +491,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
         public byte[] convertHotelImage(String nameFile) {
             ClassLoader classLoader = getClass().getClassLoader();
-            URL resource = classLoader.getResource(APARTMENT_IMAGES_PATH + nameFile);
+            URL resource = classLoader.getResource(HOTEL_IMAGES_PATH + nameFile);
             try {
                 Path path = Paths.get(resource.toURI());
                 byte[] bytes = Files.readAllBytes(path);
