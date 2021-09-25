@@ -17,6 +17,11 @@ public class HotelPreviewController {
 
     private final HotelPreviewService hotelPreviewService;
 
+    @GetMapping("/details/preview")
+    public List<HotelPreview> getApartmentPreview(){
+        return this.hotelPreviewService.getHotelPreviews();
+    }
+
     @GetMapping("/find/preview")
     List<HotelPreview> findAvailableApartmentsPreview(@RequestParam(required = false, defaultValue = "0") int rating,
                                                       @RequestParam(required = false, defaultValue = "") String city) {
