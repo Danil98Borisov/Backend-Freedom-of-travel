@@ -6,6 +6,8 @@ import nc.project.models.ApartmentPreview;
 import nc.project.models.ImageApartment;
 import nc.project.repository.ApartmentRepository;
 import nc.project.repository.ImageApartmentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,9 +21,9 @@ public class ApartmentPreviewService {
     private final ApartmentRepository apartmentRepository;
     private final ImageApartmentRepository imageApartmentRepository;
 
-    public List<ApartmentPreview> getApartmentPreviews() {
-        List<Apartment> allApartments = apartmentRepository.findAll();
-        List<ImageApartment> allApartmentImages = imageApartmentRepository.findAll();
+    public List<ApartmentPreview> getApartmentPreviews(Pageable pageable) {
+        Page<Apartment> allApartments = apartmentRepository.findAll(pageable);
+        Page<ImageApartment> allApartmentImages = imageApartmentRepository.findAll(pageable);
 
         List<ApartmentPreview> apartmentPreviews = new ArrayList<>();
         for (Apartment apartment : allApartments) {
@@ -35,7 +37,7 @@ public class ApartmentPreviewService {
         return apartmentPreviews;
     }
 
-    private ImageApartment findApartmentImage(List<ImageApartment> allApartmentImages, Apartment apartment) {
+    private ImageApartment findApartmentImage(Page<ImageApartment> allApartmentImages, Apartment apartment) {
         ImageApartment image = null;
         for (ImageApartment img : allApartmentImages) {
             if (apartment == img.getApartment() && img.getFlag() == 1) {
@@ -46,8 +48,8 @@ public class ApartmentPreviewService {
     }
 
     public List<ApartmentPreview> getFilteredApartmentPreviews(LocalDate startDate, LocalDate endDate,
-                                                             String city,  int rating, String apartmentType, float price) {
-        List<Apartment> availableApartments = apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, apartmentType, price);
+                                                               String city, int rating, String apartmentType, float price, Pageable pageable) {
+        List<Apartment> availableApartments = apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, apartmentType, price,pageable);
 
         List<ApartmentPreview> apartmentPreviews = new ArrayList<>();
         for (Apartment apartment : availableApartments) {

@@ -8,6 +8,7 @@ import nc.project.models.ImageApartment;
 import nc.project.repository.ApartmentRepository;
 import nc.project.repository.ImageApartmentRepository;
 import nc.project.service.ApartmentDetailsService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,8 +52,9 @@ public class ApartmentController {
                                             @RequestParam(required = false, defaultValue = "0") int rating,
                                             @RequestParam(required = false, defaultValue = "") String city,
                                             @RequestParam(required = false) ApartmentType type,
-                                            @RequestParam(required = false, defaultValue = "10000000") float price) {
-        return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price);
+                                            @RequestParam(required = false, defaultValue = "10000000") float price,
+                                            Pageable pageable) {
+        return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price, pageable);
     }
 
 

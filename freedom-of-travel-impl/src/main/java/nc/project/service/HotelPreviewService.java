@@ -8,6 +8,7 @@ import nc.project.models.HotelPreview;
 import nc.project.models.ImageHotel;
 import nc.project.repository.HotelRepository;
 import nc.project.repository.ImageHotelRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,8 +47,8 @@ public class HotelPreviewService {
         return image;
     }
 
-    public List<HotelPreview> getFilteredHotelPreviews(String city,  int rating) {
-        List<Hotel> availableHotels = hotelRepository.findAvailableHotels(city, rating);
+    public List<HotelPreview> getFilteredHotelPreviews(String city, int rating, Pageable pageable) {
+        List<Hotel> availableHotels = hotelRepository.findAvailableHotels(city, rating, pageable);
 
         List<HotelPreview> hotelPreviews = new ArrayList<>();
         for (Hotel hotel : availableHotels) {
