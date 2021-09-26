@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.models.HotelPreview;
 import nc.project.service.HotelPreviewService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -24,8 +26,15 @@ public class HotelPreviewController {
 
     @GetMapping("/find/preview")
     List<HotelPreview> findAvailableApartmentsPreview(@RequestParam(required = false, defaultValue = "0") int rating,
-                                                      @RequestParam(required = false, defaultValue = "") String city) {
-        return hotelPreviewService.getFilteredHotelPreviews(city, rating);
+                                                      @RequestParam(required = false, defaultValue = "") String city,
+                                                      @RequestParam Optional<Integer> page) {
+        return hotelPreviewService.getFilteredHotelPreviews(
+                city,
+                rating,
+                PageRequest.of(
+                        page.orElse(1),
+                        5
+                ));
     }
 
 }

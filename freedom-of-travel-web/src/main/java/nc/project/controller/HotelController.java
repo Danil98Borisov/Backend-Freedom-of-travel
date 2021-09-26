@@ -5,6 +5,7 @@ import nc.project.models.Hotel;
 import nc.project.models.HotelDetails;
 import nc.project.repository.HotelRepository;
 import nc.project.service.HotelDetailsService;
+import nc.project.service.HotelPreviewService;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,6 +17,7 @@ public class HotelController {
 
     private final HotelRepository hotelRepository;
     private final HotelDetailsService hotelDetailsService;
+    private final HotelPreviewService hotelService;
 
     @GetMapping("/all")
     public Iterable<Hotel> findAll() {
