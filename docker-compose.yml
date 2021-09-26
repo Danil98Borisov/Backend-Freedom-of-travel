@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  db_postqresql:
+    image: postgres:latest
+    container_name: db_postqresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - DATABASE_HOST=${DB_HOST}
+      - PGDATA=${DATA}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    restart: always
