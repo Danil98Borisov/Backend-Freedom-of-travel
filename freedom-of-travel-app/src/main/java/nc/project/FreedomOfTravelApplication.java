@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @Slf4j
+@SpringBootApplication
 @RequiredArgsConstructor
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class FreedomOfTravelApplication implements CommandLineRunner{
 
     final private TestDataLoader testDataLoader;

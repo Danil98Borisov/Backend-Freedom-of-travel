@@ -23,6 +23,12 @@
             <artifactId>freedom-of-travel-impl</artifactId>
             <version>${revision}</version>
         </dependency>
+        <dependency>
+            <groupId>nc.project</groupId>
+            <artifactId>freedom-of-travel-security</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
