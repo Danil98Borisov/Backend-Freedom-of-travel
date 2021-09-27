@@ -1,4 +1,4 @@
-package nc.project.models;
+package nc.project.jpa.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

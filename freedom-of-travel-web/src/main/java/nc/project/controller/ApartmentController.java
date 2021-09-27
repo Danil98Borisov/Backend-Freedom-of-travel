@@ -2,11 +2,11 @@ package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
 import nc.project.const_enum.ApartmentType;
-import nc.project.models.Apartment;
+import nc.project.jpa.entity.Apartment;
 import nc.project.models.ApartmentDetails;
-import nc.project.models.ImageApartment;
-import nc.project.repository.ApartmentRepository;
-import nc.project.repository.ImageApartmentRepository;
+import nc.project.jpa.entity.ImageApartment;
+import nc.project.jpa.repository.ApartmentRepository;
+import nc.project.jpa.repository.ImageApartmentRepository;
 import nc.project.service.ApartmentDetailsService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -18,8 +18,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static nc.project.models.ERole.ROLE_ADMIN;
-import static nc.project.models.ERole.ROLE_ADVERTISER;
+import static nc.project.const_enum.ERole.ROLE_ADMIN;
+import static nc.project.const_enum.ERole.ROLE_ADVERTISER;
 
 @Configuration
 @RequiredArgsConstructor

@@ -1,9 +1,9 @@
 package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
-import nc.project.models.Hotel;
+import nc.project.jpa.entity.Hotel;
 import nc.project.models.HotelDetails;
-import nc.project.repository.HotelRepository;
+import nc.project.jpa.repository.HotelRepository;
 import nc.project.service.HotelDetailsService;
 import nc.project.service.HotelPreviewService;
 import org.springframework.web.bind.annotation.*;

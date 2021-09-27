@@ -1,7 +1,8 @@
-package nc.project.models;
+package nc.project.jpa.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nc.project.const_enum.ERole;
 
 import javax.persistence.*;
 

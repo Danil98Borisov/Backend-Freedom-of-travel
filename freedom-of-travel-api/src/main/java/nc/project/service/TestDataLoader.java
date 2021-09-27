@@ -1,8 +1,8 @@
 package nc.project.service;
 
-import nc.project.models.Apartment;
-import nc.project.models.Hotel;
-import nc.project.models.Reservation;
+import nc.project.jpa.entity.Apartment;
+import nc.project.jpa.entity.Hotel;
+import nc.project.jpa.entity.Reservation;
 
 import java.io.IOException;
 import java.text.ParseException;

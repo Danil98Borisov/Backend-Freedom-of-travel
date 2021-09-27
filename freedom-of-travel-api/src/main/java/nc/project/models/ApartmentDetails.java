@@ -3,6 +3,8 @@ package nc.project.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nc.project.jpa.entity.Apartment;
+import nc.project.jpa.entity.ImageApartment;
 
 import java.io.Serializable;
 import java.util.List;

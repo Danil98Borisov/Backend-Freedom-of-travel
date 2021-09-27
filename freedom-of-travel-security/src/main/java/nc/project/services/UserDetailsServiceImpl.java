@@ -1,7 +1,7 @@
 package nc.project.services;
 
-import nc.project.models.User;
-import nc.project.repository.UserRepository;
+import nc.project.jpa.entity.User;
+import nc.project.jpa.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
