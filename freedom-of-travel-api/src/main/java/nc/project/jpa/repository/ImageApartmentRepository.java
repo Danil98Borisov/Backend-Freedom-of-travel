@@ -1,6 +1,6 @@
-package nc.project.repository;
+package nc.project.jpa.repository;
 
-import nc.project.models.ImageApartment;
+import nc.project.jpa.entity.ImageApartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

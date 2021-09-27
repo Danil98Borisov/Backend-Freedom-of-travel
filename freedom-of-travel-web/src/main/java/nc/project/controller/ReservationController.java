@@ -2,8 +2,8 @@ package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nc.project.models.Reservation;
-import nc.project.repository.ReservationRepository;
+import nc.project.jpa.entity.Reservation;
+import nc.project.jpa.repository.ReservationRepository;
 import org.springframework.web.bind.annotation.*;
 
 

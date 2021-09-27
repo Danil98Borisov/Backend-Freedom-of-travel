@@ -1,6 +1,6 @@
-package nc.project.repository;
+package nc.project.jpa.repository;
 
-import nc.project.models.ImageHotel;
+import nc.project.jpa.entity.ImageHotel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

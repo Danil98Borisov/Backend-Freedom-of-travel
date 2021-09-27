@@ -1,8 +1,10 @@
-package nc.project.models;
+package nc.project.jpa.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nc.project.jpa.entity.Apartment;
+import nc.project.jpa.entity.Hotel;
 
 import javax.persistence.*;
 import java.time.LocalDate;

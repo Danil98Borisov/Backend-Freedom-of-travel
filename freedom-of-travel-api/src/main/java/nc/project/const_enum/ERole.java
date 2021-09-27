@@ -1,4 +1,4 @@
-package nc.project.models;
+package nc.project.const_enum;
 
 public enum ERole {
     ROLE_USER,

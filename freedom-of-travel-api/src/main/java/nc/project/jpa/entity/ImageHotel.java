@@ -1,18 +1,19 @@
-package nc.project.models;
+package nc.project.jpa.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nc.project.jpa.entity.Hotel;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "image_apartment")
+@Table(name = "image_hotel")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class ImageApartment {
+public class ImageHotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +21,8 @@ public class ImageApartment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="apartment_id")
-    private Apartment apartment;
+    @JoinColumn(name="hotel_id")
+    private Hotel hotel;
 
     @Column(name = "image", length = Integer.MAX_VALUE, nullable = true)
     private byte[] image;
@@ -29,7 +30,7 @@ public class ImageApartment {
     @Column(name = "flag")
     private int flag;
 
-    public ImageApartment(Long id) {
+    public ImageHotel(Long id) {
         this.id = id;
     }
 

@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.const_enum.ApartmentType;
 import nc.project.models.ApartmentPreview;
-import nc.project.repository.ApartmentRepository;
-import nc.project.repository.ImageApartmentRepository;
 import nc.project.service.ApartmentPreviewService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;

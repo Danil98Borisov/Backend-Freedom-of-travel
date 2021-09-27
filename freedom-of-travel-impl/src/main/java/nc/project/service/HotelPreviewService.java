@@ -2,12 +2,12 @@
 package nc.project.service;
 
 import lombok.RequiredArgsConstructor;
-import nc.project.models.Hotel;
+import nc.project.jpa.entity.Hotel;
 
 import nc.project.models.HotelPreview;
-import nc.project.models.ImageHotel;
-import nc.project.repository.HotelRepository;
-import nc.project.repository.ImageHotelRepository;
+import nc.project.jpa.entity.ImageHotel;
+import nc.project.jpa.repository.HotelRepository;
+import nc.project.jpa.repository.ImageHotelRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

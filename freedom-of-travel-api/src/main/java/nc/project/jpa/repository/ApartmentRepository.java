@@ -1,6 +1,6 @@
-package nc.project.repository;
+package nc.project.jpa.repository;
 
-import nc.project.models.Apartment;
+import nc.project.jpa.entity.Apartment;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
