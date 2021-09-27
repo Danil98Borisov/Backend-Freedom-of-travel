@@ -14,6 +14,7 @@
         <module>freedom-of-travel-app</module>
         <module>freedom-of-travel-web</module>
         <module>freedom-of-travel-impl</module>
+        <module>freedom-of-travel-security</module>
     </modules>
 
     <parent>

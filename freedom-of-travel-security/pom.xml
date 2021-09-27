@@ -7,34 +7,24 @@
         <groupId>nc.project</groupId>
         <version>${revision}</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>freedom-of-travel-app</artifactId>
+    <artifactId>freedom-of-travel-security</artifactId>
 
     <dependencies>
-        <!-- freedom-of-travel-Application -->
+
         <dependency>
             <groupId>nc.project</groupId>
             <artifactId>freedom-of-travel-api</artifactId>
             <version>${revision}</version>
         </dependency>
-        <dependency>
-            <groupId>nc.project</groupId>
-            <artifactId>freedom-of-travel-impl</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
-            <groupId>nc.project</groupId>
-            <artifactId>freedom-of-travel-web</artifactId>
-            <version>${revision}</version>
-        </dependency>
-        <dependency>
-            <groupId>nc.project</groupId>
-            <artifactId>freedom-of-travel-security</artifactId>
-            <version>${revision}</version>
-        </dependency>
 
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
     </dependencies>
 
 </project>
