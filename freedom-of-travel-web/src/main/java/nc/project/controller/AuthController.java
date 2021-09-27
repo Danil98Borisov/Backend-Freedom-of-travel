@@ -3,7 +3,6 @@ package nc.project.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.auth.request.LoginRequest;
-import nc.project.auth.request.SignupRequest;
 import nc.project.auth.response.JwtResponse;
 import nc.project.service.AuthService;
 import nc.project.services.UserDetailsImpl;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -37,12 +35,6 @@ public class AuthController {
                                  userDetails.getUsername(),
                                  userDetails.getEmail(),
                                  roles));
-    }
-
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest,
-                                          HttpServletRequest request) throws UnsupportedEncodingException {
-        return authService.registerUser(signUpRequest, getSiteURL(request));
     }
 
     private String getSiteURL(HttpServletRequest request) {

@@ -2,7 +2,6 @@ package nc.project.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nc.project.models.ERole;
 
 import javax.persistence.*;
 
