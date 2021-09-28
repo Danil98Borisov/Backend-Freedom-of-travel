@@ -32,7 +32,7 @@ public class ReservationController {
         return reservationRepository.save(reservation);
     }
 
-    @GetMapping("/user/booking/{email}")
+    @GetMapping("/booking/{email}")
     public Iterable<Reservation> findReservationByUser(@PathVariable("email") String email) {
         return reservationRepository.findReservationByUser(email);
     }
