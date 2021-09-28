@@ -30,6 +30,10 @@ public class Reservation {
     @JoinColumn(name = "apartment_id")
     private Apartment apartment;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Column(name = "start_date")
     private LocalDate start_date;
 
