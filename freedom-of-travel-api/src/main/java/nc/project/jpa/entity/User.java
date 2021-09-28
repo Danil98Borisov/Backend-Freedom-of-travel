@@ -1,8 +1,8 @@
 package nc.project.jpa.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nc.project.jpa.entity.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
@@ -41,22 +42,19 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany()
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password) {
+    public User(@NotBlank @Size(max = 20) String username,
+                @NotBlank @Size(max = 50) @Email String email,
+                @NotBlank @Size(max = 120) String password,
+                Set<Role> roles) {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public User(Long id, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        this.roles = roles;
     }
 }

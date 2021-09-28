@@ -9,7 +9,6 @@ import nc.project.services.UserDetailsImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
@@ -35,11 +34,6 @@ public class AuthController {
                                  userDetails.getUsername(),
                                  userDetails.getEmail(),
                                  roles));
-    }
-
-    private String getSiteURL(HttpServletRequest request) {
-        String siteURL = request.getRequestURL().toString();
-        return siteURL.replace(request.getServletPath(), "");
     }
 
 }
