@@ -17,11 +17,9 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -35,23 +33,19 @@ public class TestDataLoaderImpl implements TestDataLoader {
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final UserRoleRepository userRoleRepository;
+
     private final PasswordEncoder encoder;
 
     private final String APARTMENT_IMAGES_PATH = "apartment-images/";
     private final String HOTEL_IMAGES_PATH = "hotel-images/";
 
-    public void uploadTestData() throws ParseException {
-
+    public void uploadTestData() {
         hotelRepository.saveAll(getHotelList());
         apartmentRepository.saveAll(getApartmentList());
         imageApartmentRepository.saveAll(getImageApartmentList());
         imageHotelRepository.saveAll(getImageHotelList());
         reservationRepository.saveAll(getReservationList());
-
-        roleRepository.saveAll(getRoleList());
-        userRepository.saveAll(getUserList());
-        userRoleRepository.saveAll(getUserRoleList());
+        uploadRolesAndUsers();
     }
 
     public List<Hotel> getHotelList() {
@@ -515,25 +509,17 @@ public class TestDataLoaderImpl implements TestDataLoader {
         return null;
     }
 
-    public List<User> getUserList() {
-        List<User> userList = new ArrayList<>();
-        userList.add(new User(1L, "Admin", "admin@mail.ru", encoder.encode("adminpass")));
-        userList.add(new User(2L, "Advertiser", "advertiser@mail.ru", encoder.encode("advpass")));
-        return userList;
+    public void uploadRolesAndUsers() {
+        Role userRole = new Role(1L, ERole.ROLE_USER);
+        Role advertiserRole = new Role(2L, ERole.ROLE_ADVERTISER);
+        Role adminRole = new Role(3L, ERole.ROLE_ADMIN);
+        roleRepository.saveAll(Arrays.asList(userRole, advertiserRole, adminRole));
+
+        User admin = new User(1L, "Admin", "admin@mail.ru", encoder.encode("adminpass"),
+                Collections.singleton(adminRole));
+        User advertiser = new User(2L, "Advertiser", "advertiser@mail.ru", encoder.encode("advpass"),
+                Collections.singleton(advertiserRole));
+        userRepository.saveAll(Arrays.asList(admin, advertiser));
     }
 
-    public List<Role> getRoleList() {
-        List<Role> roleList = new ArrayList<>();
-        roleList.add(new Role(1L, ERole.ROLE_USER));
-        roleList.add(new Role(2L, ERole.ROLE_ADVERTISER));
-        roleList.add(new Role(3L, ERole.ROLE_ADMIN));
-        return roleList;
-    }
-
-    public List<UserRole> getUserRoleList() {
-        List<UserRole> userRoleList = new ArrayList<>();
-        userRoleList.add(new UserRole(1L, 1L, 3L));
-        userRoleList.add(new UserRole(2L, 2L, 2L));
-        return userRoleList;
-    }
 }
