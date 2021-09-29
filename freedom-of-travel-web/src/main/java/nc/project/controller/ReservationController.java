@@ -6,6 +6,8 @@ import nc.project.jpa.entity.Reservation;
 import nc.project.jpa.repository.ReservationRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -28,7 +30,7 @@ public class ReservationController {
     }
 
     @GetMapping("/booking/{email}")
-    public Iterable<Reservation> findReservationByUser(@PathVariable("email") String email) {
+    public List<Reservation> findReservationByUser(@PathVariable("email") String email) {
         return reservationRepository.findReservationByUser(email);
     }
 
