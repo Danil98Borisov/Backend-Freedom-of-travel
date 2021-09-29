@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import nc.project.auth.request.LoginRequest;
 import nc.project.jwt.JwtUtils;
 import nc.project.services.UserDetailsImpl;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +47,14 @@ public class AuthServiceImpl implements AuthService {
         outDataAuthenticateUser.put("userDetails", userDetails);
 
         return outDataAuthenticateUser;
+    }
+
+    @Override
+    public ResponseEntity<?> signOut(HttpServletRequest request) {
+        boolean tokenDeactivated = jwtUtils.deactivateToken(request);
+        return tokenDeactivated
+                ? ResponseEntity.ok().build()
+                : ResponseEntity.noContent().build();
     }
 
 }

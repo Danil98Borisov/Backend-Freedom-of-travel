@@ -4,10 +4,17 @@ import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
@@ -19,12 +26,21 @@ public class JwtUtils {
     @Value("${freedomOfTravel.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
+    private Map<UUID, OffsetDateTime> sessionToExpiredWhen = new ConcurrentHashMap<>();
+
+    private final  String AUTHORIZATION_HEADER = "Authorization";
+    private final  String PREFIX = "Bearer ";
+
     public String generateJwtToken(Authentication authentication) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
+        return Jwts.builder()
+                .setSubject((userPrincipal.getUsername()))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+                .addClaims(Collections.singletonMap("session-id", UUID.randomUUID()))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 
@@ -49,6 +65,42 @@ public class JwtUtils {
         }
 
         return false;
+    }
+
+    public boolean deactivateToken(HttpServletRequest request) {
+
+        String authenticationHeader = request.getHeader(AUTHORIZATION_HEADER);
+        if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX)) {
+            return false;
+        }
+        String jwtToken = authenticationHeader.replace(PREFIX, "");
+        Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwtToken).getBody();
+
+        String sessionId = (String) claims.get("session-id");
+        if (sessionId != null) {
+            log.info("Expiring session with id = {}", sessionId);
+            sessionToExpiredWhen.put(UUID.fromString(sessionId), OffsetDateTime.now());
+            return true;
+        }
+        return false;
+    }
+
+
+    // This job removes all sessions for which token lifespan is passed
+    @Scheduled(cron = "*/30 * * * * *")
+    public void cleanExpiredSessions() {
+        OffsetDateTime now = OffsetDateTime.now();
+        log.info("Session cleaning job started at {}", now);
+        log.info("Now in epoch millis: {}", now.toInstant().toEpochMilli());
+
+        for (Map.Entry<UUID, OffsetDateTime>  entry: sessionToExpiredWhen.entrySet()) {
+            log.info("Session with id = {} expires at {}", entry.getKey(), entry.getValue().toInstant().toEpochMilli());
+            log.info("Diff is {}", now.toInstant().toEpochMilli() - entry.getValue().toInstant().toEpochMilli());
+            if (now.toInstant().toEpochMilli() - entry.getValue().toInstant().toEpochMilli() > jwtExpirationMs) {
+                log.info("Removing session with id = {}", entry.getKey());
+                sessionToExpiredWhen.remove(entry.getKey());
+            }
+        }
     }
 
 }
