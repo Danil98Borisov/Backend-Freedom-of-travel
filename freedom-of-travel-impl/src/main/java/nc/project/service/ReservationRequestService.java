@@ -23,7 +23,7 @@ public class ReservationRequestService {
             reservation.setEnd_date(reservationRequest.end_date);
             reservation.setStart_date(reservationRequest.start_date);
             reservation.setApartment(apartmentRepository.findApartmentById(reservationRequest.apartmentId));
-            reservation.setUser(userRepository.findUserByEmail(reservationRequest.userEmail));
+            reservation.setUser(userRepository.findUserByEmail(reservationRequest.bookingBy));
 
         return reservationRepository.save(reservation);
     };

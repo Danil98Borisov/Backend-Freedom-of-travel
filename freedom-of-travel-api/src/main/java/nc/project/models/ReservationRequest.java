@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class ReservationRequest {
 
     public Long apartmentId;
-    public String userEmail;
+    public String bookingBy;
     public LocalDate start_date;
     public LocalDate end_date;
 }
