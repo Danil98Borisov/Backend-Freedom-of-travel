@@ -27,11 +27,6 @@ public class ReservationController {
         reservationRepository.deleteById(id);
     }
 
-    @PostMapping("/add")
-    Reservation addReservation(@RequestBody Reservation reservation) {
-        return reservationRepository.save(reservation);
-    }
-
     @GetMapping("/booking/{email}")
     public Iterable<Reservation> findReservationByUser(@PathVariable("email") String email) {
         return reservationRepository.findReservationByUser(email);

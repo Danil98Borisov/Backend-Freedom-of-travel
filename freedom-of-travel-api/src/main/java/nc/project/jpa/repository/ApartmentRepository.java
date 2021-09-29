@@ -24,7 +24,6 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
             " (select 1 from reservation resrv " +
             "   where resrv.start_date >= :startDate " +
             "   and resrv.end_date <= :endDate " +
-            "   and resrv.hotel_id = h.id " +
             "   and resrv.apartment_id = ap.id)", nativeQuery = true)
     List<Apartment> findAvailableApartments(@Param("startDate") LocalDate startDate,
                                             @Param("endDate") LocalDate endDate,
@@ -33,4 +32,7 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
                                             @Param("apartmentType") String apartmentType,
                                             @Param("price") Float price,
                                             Pageable pageble);
+
+    @Query(value = "select * from apartment where id = :id ", nativeQuery = true)
+    Apartment findApartmentById(@Param("id") Long id);
 }
