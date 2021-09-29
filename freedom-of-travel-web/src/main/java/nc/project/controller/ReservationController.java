@@ -6,6 +6,8 @@ import nc.project.jpa.entity.Reservation;
 import nc.project.jpa.repository.ReservationRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Slf4j
 @RequiredArgsConstructor
@@ -27,9 +29,9 @@ public class ReservationController {
         reservationRepository.deleteById(id);
     }
 
-    @PostMapping("/add")
-    Reservation addReservation(@RequestBody Reservation reservation) {
-        return reservationRepository.save(reservation);
+    @GetMapping("/booking/{email}")
+    public List<Reservation> findReservationByUser(@PathVariable("email") String email) {
+        return reservationRepository.findReservationByUser(email);
     }
 
 }
