@@ -31,10 +31,8 @@ public class HotelPreviewController {
         return hotelPreviewService.getFilteredHotelPreviews(
                 city,
                 rating,
-                PageRequest.of(
-                        page.orElse(1),
-                        5
-                ));
+                PageRequest.of(page.orElse(0), 5)
+        );
     }
 
 }

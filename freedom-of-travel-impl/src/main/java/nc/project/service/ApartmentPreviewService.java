@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +31,12 @@ public class ApartmentPreviewService {
         List<ApartmentPreview> apartmentPreviews = new ArrayList<>();
         for (Apartment apartment : allApartments) {
             ApartmentPreview apartmentPreview = new ApartmentPreview();
+
             apartmentPreview.setApartment(apartment);
+
             ImageApartment image = findApartmentImage(allApartmentImages, apartment);
             apartmentPreview.setImageApartment(image);
+
             apartmentPreviews.add(apartmentPreview);
         }
 
@@ -54,7 +60,9 @@ public class ApartmentPreviewService {
         List<ApartmentPreview> apartmentPreviews = new ArrayList<>();
         for (Apartment apartment : availableApartments) {
             ApartmentPreview apartmentPreview = new ApartmentPreview();
+
             apartmentPreview.setApartment(apartment);
+
             ImageApartment image = imageApartmentRepository.findImageApartmentByApartmentIdAndFlag(apartment.getId(), 1);
             apartmentPreview.setImageApartment(image);
             apartmentPreviews.add(apartmentPreview);

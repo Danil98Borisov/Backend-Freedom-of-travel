@@ -53,9 +53,12 @@ public class HotelPreviewService {
         List<HotelPreview> hotelPreviews = new ArrayList<>();
         for (Hotel hotel : availableHotels) {
             HotelPreview hotelPreview = new HotelPreview();
+
             hotelPreview.setHotel(hotel);
+
             ImageHotel image = imageHotelRepository.findImageHotelByHotelIdAndFlag(hotel.getId(), 1);
             hotelPreview.setImageHotel(image);
+
             hotelPreviews.add(hotelPreview);
         }
 
