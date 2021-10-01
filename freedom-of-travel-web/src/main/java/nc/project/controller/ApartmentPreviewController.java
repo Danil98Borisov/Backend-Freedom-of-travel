@@ -24,10 +24,7 @@ public class ApartmentPreviewController {
 
     @GetMapping("/details/preview")
     public List<ApartmentPreview> getApartmentPreview(@RequestParam Optional<Integer> page) {
-        return this.apartmentPreviewService.getApartmentPreviews(PageRequest.of(
-                page.orElse(1),
-                5
-        ));
+        return this.apartmentPreviewService.getApartmentPreviews(PageRequest.of(page.orElse(0),5));
     }
 
 
@@ -39,10 +36,9 @@ public class ApartmentPreviewController {
                                                           @RequestParam(required = false) ApartmentType type,
                                                           @RequestParam(required = false, defaultValue = "10000000") float price,
                                                           @RequestParam Optional<Integer> page) {
-        return apartmentPreviewService.getFilteredApartmentPreviews(startDate, endDate, city, rating, type != null ? type.name() : "", price,PageRequest.of(
-                page.orElse(1),
-                5
-        ));
+        return apartmentPreviewService.getFilteredApartmentPreviews(startDate, endDate, city, rating, type != null ? type.name() : "", price,
+                PageRequest.of(page.orElse(0), 5)
+        );
     }
 
 }

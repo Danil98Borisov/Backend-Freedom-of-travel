@@ -46,7 +46,6 @@ public class TestDataLoaderImpl implements TestDataLoader {
         imageApartmentRepository.saveAll(getImageApartmentList());
         imageHotelRepository.saveAll(getImageHotelList());
         reservationRepository.saveAll(getReservationList());
-
     }
 
     public List<Hotel> getHotelList() {
@@ -130,7 +129,6 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
     public List<Apartment> getApartmentList() {
         List<Apartment> apartmentList = new ArrayList<>();
-        apartmentList.add(new Apartment(1L, new Hotel(4L), ApartmentType.SINGLE.name(), 100, null));
         apartmentList.add(new Apartment(1L, new Hotel(4L), ApartmentType.SINGLE.name(), 100, null));
         apartmentList.add(new Apartment(2L, new Hotel(7L), ApartmentType.DOUBLE.name(), 80, null));
         apartmentList.add(new Apartment(3L, new Hotel(9L), ApartmentType.TRIPLE.name(), 45, null));

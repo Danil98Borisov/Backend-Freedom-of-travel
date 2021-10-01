@@ -34,12 +34,6 @@
 
     <dependencies>
 
-        <!-- Javax -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-        </dependency>
-
         <!-- maven -->
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
@@ -107,10 +101,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
         </dependency>
     </dependencies>
 
