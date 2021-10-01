@@ -53,7 +53,7 @@ public class ApartmentPreviewService {
         return image;
     }
 
-    public List<ApartmentPreview> getFilteredApartmentPreviews(LocalDate startDate, LocalDate endDate,
+    public List<ApartmentPreview> findAvailableApartmentsPreview(LocalDate startDate, LocalDate endDate,
                                                                String city, int rating, String apartmentType, float price, Pageable pageable) {
         List<Apartment> availableApartments = apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, apartmentType, price,pageable);
 
