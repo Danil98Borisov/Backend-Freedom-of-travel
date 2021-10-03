@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.OffsetDateTime;
+import java.time.*;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
@@ -50,7 +50,11 @@ public class JwtUtils {
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken).getBody();
+            String sessionId = (String) claims.get("session-id");
+            if (sessionId != null && sessionToExpiredWhen.containsKey(UUID.fromString(sessionId))) {
+                return false;
+            }
             return true;
         } catch (SignatureException e) {
             log.error("Invalid JWT signature: {}", e.getMessage());
@@ -79,7 +83,8 @@ public class JwtUtils {
         String sessionId = (String) claims.get("session-id");
         if (sessionId != null) {
             log.info("Expiring session with id = {}", sessionId);
-            sessionToExpiredWhen.put(UUID.fromString(sessionId), OffsetDateTime.now());
+            sessionToExpiredWhen.put(UUID.fromString(sessionId), claims.getExpiration().toInstant().atOffset(
+                    ZoneId.systemDefault().getRules().getOffset(Instant.now())));
             return true;
         }
         return false;
@@ -90,13 +95,15 @@ public class JwtUtils {
     @Scheduled(cron = "*/30 * * * * *")
     public void cleanExpiredSessions() {
         OffsetDateTime now = OffsetDateTime.now();
+        long nowMillis = now.toInstant().toEpochMilli();
+
         log.info("Session cleaning job started at {}", now);
-        log.info("Now in epoch millis: {}", now.toInstant().toEpochMilli());
+        log.info("Now in epoch millis: {}", nowMillis);
 
         for (Map.Entry<UUID, OffsetDateTime>  entry: sessionToExpiredWhen.entrySet()) {
             log.info("Session with id = {} expires at {}", entry.getKey(), entry.getValue().toInstant().toEpochMilli());
-            log.info("Diff is {}", now.toInstant().toEpochMilli() - entry.getValue().toInstant().toEpochMilli());
-            if (now.toInstant().toEpochMilli() - entry.getValue().toInstant().toEpochMilli() > jwtExpirationMs) {
+            log.info("Diff is {}", nowMillis - entry.getValue().toInstant().toEpochMilli());
+            if (nowMillis > entry.getValue().toInstant().toEpochMilli()) {
                 log.info("Removing session with id = {}", entry.getKey());
                 sessionToExpiredWhen.remove(entry.getKey());
             }
