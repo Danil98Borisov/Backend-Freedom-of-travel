@@ -36,7 +36,7 @@ public class ApartmentPreviewController {
                                                           @RequestParam(required = false) ApartmentType type,
                                                           @RequestParam(required = false, defaultValue = "10000000") float price,
                                                           @RequestParam Optional<Integer> page) {
-        return apartmentPreviewService.getFilteredApartmentPreviews(startDate, endDate, city, rating, type != null ? type.name() : "", price,
+        return apartmentPreviewService.findAvailableApartmentsPreview(startDate, endDate, city, rating, type != null ? type.name() : "", price,
                 PageRequest.of(page.orElse(0), 5)
         );
     }
