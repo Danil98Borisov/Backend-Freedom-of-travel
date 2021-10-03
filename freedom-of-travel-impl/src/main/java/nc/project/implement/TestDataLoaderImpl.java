@@ -499,7 +499,12 @@ public class TestDataLoaderImpl implements TestDataLoader {
         countResourceFolderFiles(contextClassLoader, APARTMENT_IMAGES_PATH);
         countResourceFolderFiles(contextClassLoader, "");
 
+        log.info("Start checking file {}", APARTMENT_IMAGES_PATH + nameFile);
         URL resource = classLoader.getResource(APARTMENT_IMAGES_PATH + nameFile);
+        log.info("resource: {}", resource);
+
+        URL resourceLowercase = classLoader.getResource(APARTMENT_IMAGES_PATH + nameFile.toLowerCase());
+        log.info("resourceLowercase: {}", resourceLowercase);
         try {
             Path path = Paths.get(resource.toURI());
             byte[] bytes = Files.readAllBytes(path);
