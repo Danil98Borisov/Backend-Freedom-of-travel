@@ -11,6 +11,7 @@ import nc.project.service.TestDataLoader;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -484,6 +485,17 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
     public byte[] convertApartmentImage(String nameFile) {
         ClassLoader classLoader = getClass().getClassLoader();
+        log.info("convertApartmentImage, classLoader name: {}", classLoader.getName());
+
+        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        log.info("convertApartmentImage, contextClassLoader: {}", contextClassLoader.getName());
+
+        countResourceFolderFiles(classLoader, APARTMENT_IMAGES_PATH);
+        countResourceFolderFiles(classLoader, "");
+
+        countResourceFolderFiles(contextClassLoader, APARTMENT_IMAGES_PATH);
+        countResourceFolderFiles(contextClassLoader, "");
+
         URL resource = classLoader.getResource(APARTMENT_IMAGES_PATH + nameFile);
         try {
             Path path = Paths.get(resource.toURI());
@@ -506,6 +518,18 @@ public class TestDataLoaderImpl implements TestDataLoader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private static void countResourceFolderFiles (ClassLoader classLoader, String folder) {
+        URL url = classLoader.getResource(folder);
+        if (url != null) {
+            log.info("URL by path '{}' is found, counting files", folder);
+            String path = url.getPath();
+            File[] files = new File(path).listFiles();
+            log.info("Files in folder {}: {}", folder,  files.length);
+        } else {
+            log.info("URL by path '{}' is null, skip counting files", folder);
+        }
     }
 
     public void uploadRolesAndUsers() {
