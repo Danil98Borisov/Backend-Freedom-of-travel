@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -490,8 +491,10 @@ public class TestDataLoaderImpl implements TestDataLoader {
         ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
         log.info("convertApartmentImage, contextClassLoader: {}", contextClassLoader.getName());
 
-        countResourceFolderFiles(classLoader, APARTMENT_IMAGES_PATH);
         countResourceFolderFiles(classLoader, "");
+        printResourceFolderFiles(classLoader, "");
+        countResourceFolderFiles(classLoader, APARTMENT_IMAGES_PATH);
+        printResourceFolderFiles(classLoader, APARTMENT_IMAGES_PATH);
 
         countResourceFolderFiles(contextClassLoader, APARTMENT_IMAGES_PATH);
         countResourceFolderFiles(contextClassLoader, "");
@@ -520,13 +523,24 @@ public class TestDataLoaderImpl implements TestDataLoader {
         return null;
     }
 
-    private static void countResourceFolderFiles (ClassLoader classLoader, String folder) {
+    private static void countResourceFolderFiles(ClassLoader classLoader, String folder) {
         URL url = classLoader.getResource(folder);
         if (url != null) {
             log.info("URL by path '{}' is found, counting files", folder);
             String path = url.getPath();
             File[] files = new File(path).listFiles();
             log.info("Files in folder {}: {}", folder,  files.length);
+        } else {
+            log.info("URL by path '{}' is null, skip counting files", folder);
+        }
+    }
+
+    private static void printResourceFolderFiles(ClassLoader classLoader, String folder) {
+        URL url = classLoader.getResource(folder);
+        if (url != null) {
+            String path = url.getPath();
+            File[] files = new File(path).listFiles();
+            log.info("Files in folder {}: {}", folder, Arrays.stream(files).map(File::getName).collect(Collectors.joining(",")));
         } else {
             log.info("URL by path '{}' is null, skip counting files", folder);
         }
