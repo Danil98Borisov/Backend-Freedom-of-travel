@@ -31,7 +31,7 @@ public class ReservationRequestController {
     }
 
     @GetMapping("/find/reservation")
-    List<Reservation> findAvailableApartmentsPreview(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+    Integer findAvailableApartmentsPreview(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
                                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                                      @RequestParam Long apartmentId) {
         return reservationRepository.findBookedApartments(startDate, endDate, apartmentId);
