@@ -24,8 +24,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
     List<Reservation> findReservationByUser(@Param("email") String email);
 
     @Query(value = "Select * from reservation where " +
-            "(:startDate BETWEEN start_date AND end_date) " +
-            "AND (:endDate BETWEEN start_date AND end_date) and apartment_id = :apartmentId", nativeQuery = true)
+            "((:startDate BETWEEN start_date AND end_date) " +
+            "OR (:endDate BETWEEN start_date AND end_date)) and apartment_id = :apartmentId", nativeQuery = true)
     List<Reservation> findBookedApartments(@Param("startDate") LocalDate startDate,
                                              @Param("endDate") LocalDate endDate,
                                              @Param("apartmentId") Long apartmentId);
