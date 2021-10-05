@@ -11,8 +11,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ReservationRequest {
 
-    public Long apartmentId;
-    public String bookingBy;
-    public LocalDate start_date;
-    public LocalDate end_date;
+    private Long apartmentId;
+    private String bookingBy;
+    private LocalDate startDate;
+    private LocalDate endDate;
 }
+
