@@ -2,11 +2,11 @@ package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nc.project.jpa.entity.Reservation;
+import nc.project.jpa.repository.ReservationRepository;
 import nc.project.models.ReservationRequest;
-import nc.project.service.ReservationRequestService;
+import nc.project.models.ReservationResponse;
+import nc.project.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
-
 
 @Slf4j
 @RequiredArgsConstructor
@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationRequestController {
 
 
-    private final ReservationRequestService reservationRequestService;
+    private final ReservationService reservationService;
+    private final ReservationRepository reservationRepository;
+
 
     @PostMapping("/add")
-    Reservation addReservation(@RequestBody ReservationRequest reservationRequest) {
-        return reservationRequestService.saveReservation(reservationRequest);
+    ReservationResponse addReservation(@RequestBody ReservationRequest reservationRequest) {
+        return reservationService.makeReservation(reservationRequest);
     }
 
 }
