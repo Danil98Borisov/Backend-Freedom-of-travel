@@ -1,7 +1,6 @@
 package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
-import nc.project.const_enum.ApartmentType;
 import nc.project.jpa.entity.Apartment;
 import nc.project.models.ApartmentDetails;
 import nc.project.jpa.entity.ImageApartment;
@@ -51,10 +50,10 @@ public class ApartmentController {
                                             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                             @RequestParam(required = false, defaultValue = "0") int rating,
                                             @RequestParam(required = false, defaultValue = "") String city,
-                                            @RequestParam(required = false) ApartmentType type,
+                                            @RequestParam(required = false, defaultValue = "") String type,
                                             @RequestParam(required = false, defaultValue = "10000000") float price,
                                             Pageable pageable) {
-        return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price, pageable);
+        return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type, price, pageable);
     }
 
 

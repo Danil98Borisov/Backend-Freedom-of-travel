@@ -13,23 +13,22 @@ import java.util.List;
 @Repository
 public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
 
-    @Query(value = "select * from apartment ap, " +
-            "     hotel h " +
-            "where h.id = ap.hotel_id " +
-            "and (:rating is null or h.rating > :rating)" +
+    @Query(value = "select * from apartment apart, hotel h, apartment_type r " +
+            "where h.id = apart.hotel_id " +
+            "and r.id = apart.type and (:rating is null or h.rating > :rating)" +
             "and (:city = '' or h.city = :city) " +
-            "and (:apartmentType = '' or ap.type = :apartmentType) " +
-            "and (:price is null or ap.price < :price) " +
+            "and (:type = '' or r.name = :type) " +
+            "and (:price is null or apart.price < :price) " +
             "and not exists  " +
             " (select 1 from reservation resrv " +
             "   where resrv.start_date >= :startDate " +
             "   and resrv.end_date <= :endDate " +
-            "   and resrv.apartment_id = ap.id)", nativeQuery = true)
+            "   and resrv.apartment_id = apart.id)", nativeQuery = true)
     List<Apartment> findAvailableApartments(@Param("startDate") LocalDate startDate,
                                             @Param("endDate") LocalDate endDate,
                                             @Param("city") String city,
                                             @Param("rating") Integer rating,
-                                            @Param("apartmentType") String apartmentType,
+                                            @Param("type") String type,
                                             @Param("price") Float price,
                                             Pageable pageble);
 

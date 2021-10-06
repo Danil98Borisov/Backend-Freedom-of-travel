@@ -20,6 +20,7 @@ public class TestApplication {
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final TypeRepository typeRepository;
 
     @Bean
     public ApartmentPreviewService apartmentPreviewService() {
@@ -28,9 +29,9 @@ public class TestApplication {
 
     @Bean
     public TestDataLoaderImpl testDataLoader() {
-        return new TestDataLoaderImpl(hotelRepository, apartmentRepository, imageApartmentRepository,
+        return new TestDataLoaderImpl(hotelRepository, typeRepository, apartmentRepository, imageApartmentRepository,
                 imageHotelRepository, reservationRepository,
-                userRepository, roleRepository, new BCryptPasswordEncoder());
+                userRepository, roleRepository,  new BCryptPasswordEncoder());
     }
 
 }
