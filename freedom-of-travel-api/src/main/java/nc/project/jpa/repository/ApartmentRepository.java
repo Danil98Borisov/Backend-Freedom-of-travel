@@ -13,11 +13,11 @@ import java.util.List;
 @Repository
 public interface ApartmentRepository extends JpaRepository<Apartment, Long> {
 
-    @Query(value = "select * from apartment apart, hotel h, apartment_type r " +
+    @Query(value = "select * from apartment apart, hotel h, apartment_type ap_type " +
             "where h.id = apart.hotel_id " +
-            "and r.id = apart.type and (:rating is null or h.rating > :rating)" +
+            "and ap_type.id = apart.type and (:rating is null or h.rating > :rating)" +
             "and (:city = '' or h.city = :city) " +
-            "and (:type = '' or r.name = :type) " +
+            "and (:type = '' or ap_type.name = :type) " +
             "and (:price is null or apart.price < :price) " +
             "and not exists  " +
             " (select 1 from reservation resrv " +

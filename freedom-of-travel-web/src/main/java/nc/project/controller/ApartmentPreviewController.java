@@ -33,10 +33,10 @@ public class ApartmentPreviewController {
                                                           @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
                                                           @RequestParam(required = false, defaultValue = "0") int rating,
                                                           @RequestParam(required = false, defaultValue = "") String city,
-                                                          @RequestParam(required = false) EType type,
+                                                          @RequestParam(required = false, defaultValue = "") String type,
                                                           @RequestParam(required = false, defaultValue = "10000000") float price,
                                                           @RequestParam Optional<Integer> page) {
-        return apartmentPreviewService.findAvailableApartmentsPreview(startDate, endDate, city, rating, type != null ? type.name() : "", price,
+        return apartmentPreviewService.findAvailableApartmentsPreview(startDate, endDate, city, rating, type, price,
                 PageRequest.of(page.orElse(0), 5)
         );
     }
