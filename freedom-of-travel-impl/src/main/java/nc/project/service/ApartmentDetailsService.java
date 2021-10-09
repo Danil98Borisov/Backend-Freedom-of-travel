@@ -20,7 +20,7 @@ public class ApartmentDetailsService {
     public ApartmentDetails getApartmentDetails(Long id) {
         ApartmentDetails apartmentDetails = new ApartmentDetails();
         apartmentRepository.findById(id).ifPresent(apartment -> {
-            List<ImageApartment> images = imageApartmentRepository.findImageApartmentsByApartmentId(apartment.getId());
+            List<ImageApartment> images = imageApartmentRepository.findImageApartmentsByApartmentTypeId(apartment.getHotel().getId(),apartment.getType().getId());
 
             apartmentDetails.setApartment(apartment);
             apartmentDetails.setApartmentImages(images);

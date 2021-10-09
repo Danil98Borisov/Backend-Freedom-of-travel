@@ -21,8 +21,12 @@ public class ImageApartment {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="apartment_id")
-    private Apartment apartment;
+    @JoinColumn(name="hotel_id")
+    private Hotel hotel;
+
+    @ManyToOne
+    @JoinColumn(name="apartment_type_id")
+    private ApartmentType apartmentType;
 
     @Column(name = "image", length = Integer.MAX_VALUE, nullable = true)
     private byte[] image;

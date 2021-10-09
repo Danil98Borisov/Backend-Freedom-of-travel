@@ -1,3 +1,4 @@
+/*
 package nc.project;
 
 import lombok.RequiredArgsConstructor;
@@ -35,3 +36,4 @@ public class TestApplication {
     }
 
 }
+*/
