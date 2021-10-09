@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Long> {
 
-    @Query(value = "select DISTINCT ON(name) h.id,h.city,h.description, h.name, h.rating from apartment apart, hotel h, apartment_type ap_type " +
+    @Query(value = "select DISTINCT ON(rating, name) h.id,h.city,h.description, h.name, h.rating from apartment apart, hotel h, apartment_type ap_type " +
             "where h.id = apart.hotel_id " +
             "and ap_type.id = apart.apartment_type_id and (:rating is null or h.rating > :rating)" +
             "and (:city = '' or h.city = :city) " +
@@ -25,7 +25,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
             "   where resrv.start_date >= :startDate " +
             "   and resrv.end_date <= :endDate " +
             "   and resrv.apartment_id = apart.id)" +
-            "ORDER BY h.name, h.id,h.rating", nativeQuery = true)
+            "ORDER BY h.rating DESC, h.name ", nativeQuery = true)
     List<Hotel> findAvailableHotels(@Param("startDate") LocalDate startDate,
                                             @Param("endDate") LocalDate endDate,
                                             @Param("city") String city,
