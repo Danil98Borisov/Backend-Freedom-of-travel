@@ -54,4 +54,10 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
                                         @Param("price") Float price,
                                         Pageable pageble);
 
+    @Query(value = "select * From hotel_user hu, hotel h, users u" +
+            "        where h.id=hu.hotel_id" +
+            "        and u.id=hu.managed_by_user" +
+            "        and  u.email=:email", nativeQuery = true)
+    Iterable<Hotel> findHotelManagerByUser(@Param("email") String email);
+
 }

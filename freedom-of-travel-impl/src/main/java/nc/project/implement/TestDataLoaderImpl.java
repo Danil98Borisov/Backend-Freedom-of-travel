@@ -34,6 +34,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private  final HotelUserRepository hotelUserRepository;
 
     private final PasswordEncoder encoder;
 
@@ -48,6 +49,8 @@ public class TestDataLoaderImpl implements TestDataLoader {
         imageApartmentRepository.saveAll(getImageApartmentList());
         imageHotelRepository.saveAll(getImageHotelList());
         reservationRepository.saveAll(getReservationList());
+        hotelUserRepository.saveAll(getHotelAndUserList());
+
     }
     
     public List<Hotel> getHotelList() {
@@ -482,6 +485,45 @@ public class TestDataLoaderImpl implements TestDataLoader {
         return imageHotelList;
     }
 
+    public List<HotelUser> getHotelAndUserList() {
+        List<HotelUser> hotelAndUserLis = new ArrayList<>();
+
+        hotelAndUserLis.add(new HotelUser(1L, new Hotel(1L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(2L, new Hotel(2L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(3L, new Hotel(3L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(3L, new Hotel(3L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(4L, new Hotel(4L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(5L, new Hotel(5L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(6L, new Hotel(6L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(7L, new Hotel(7L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(8L, new Hotel(8L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(9L, new Hotel(9L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(10L, new Hotel(10L),new User(2L)));
+        hotelAndUserLis.add(new HotelUser(11L, new Hotel(11L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(12L, new Hotel(12L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(13L, new Hotel(13L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(14L, new Hotel(14L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(15L, new Hotel(15L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(16L, new Hotel(16L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(17L, new Hotel(17L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(18L, new Hotel(18L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(19L, new Hotel(19L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(20L, new Hotel(20L),new User(3L)));
+        hotelAndUserLis.add(new HotelUser(21L, new Hotel(21L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(22L, new Hotel(22L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(23L, new Hotel(23L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(24L, new Hotel(24L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(25L, new Hotel(25L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(26L, new Hotel(26L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(27L, new Hotel(27L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(28L, new Hotel(28L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(29L, new Hotel(29L),new User(4L)));
+        hotelAndUserLis.add(new HotelUser(30L, new Hotel(30L),new User(4L)));
+
+
+        return hotelAndUserLis;
+    }
+
     public byte[] convertApartmentImage(String fileName) {
        return readFileByName(APARTMENT_IMAGES_PATH + fileName.toLowerCase());
     }
@@ -516,9 +558,13 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
         User admin = new User(1L, "Admin", "admin@mail.ru", encoder.encode("adminpass"),
                 Collections.singleton(adminRole));
-        User advertiser = new User(2L, "Advertiser", "advertiser@mail.ru", encoder.encode("advpass"),
+        User advertiserOne = new User(2L, "AdvertiserOne", "advertiserone@mail.ru", encoder.encode("advpass"),
                 Collections.singleton(advertiserRole));
-        userRepository.saveAll(Arrays.asList(admin, advertiser));
+        User advertiserTwo = new User(3L, "AdvertiserTwo", "advertisertwo@mail.ru", encoder.encode("advpass"),
+                Collections.singleton(advertiserRole));
+        User advertiserThree = new User(4L, "AdvertiserThree", "advertiserthree@mail.ru", encoder.encode("advpass"),
+                Collections.singleton(advertiserRole));
+        userRepository.saveAll(Arrays.asList(admin, advertiserOne,advertiserTwo,advertiserThree));
     }
     
     public void uploadTypes(){
