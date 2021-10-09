@@ -17,7 +17,6 @@ public class HotelController {
 
     private final HotelRepository hotelRepository;
     private final HotelDetailsService hotelDetailsService;
-    private final HotelPreviewService hotelService;
 
     @GetMapping("/all")
     public Iterable<Hotel> findAll() {
@@ -35,6 +34,11 @@ public class HotelController {
     @DeleteMapping("/delete/{id}")
     void deleteHotel(@PathVariable Long id) {
         hotelRepository.deleteById(id);
+    }
+
+    @GetMapping("/manager-hotel/{email}")
+    public Iterable<Hotel> findReservationByUser(@PathVariable("email") String email) {
+        return hotelRepository.findHotelManagerByUser(email);
     }
 
     /*Details*/
