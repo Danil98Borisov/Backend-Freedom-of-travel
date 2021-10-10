@@ -11,6 +11,7 @@ import nc.project.jpa.repository.ImageHotelRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +48,9 @@ public class HotelPreviewService {
         return image;
     }
 
-    public List<HotelPreview> getFilteredHotelPreviews(String city, int rating, Pageable pageable) {
-        List<Hotel> availableHotels = hotelRepository.findAvailableHotels(city, rating, pageable);
+    public List<HotelPreview> getFilteredHotelPreviews(LocalDate startDate, LocalDate endDate,
+                                                       String city, int rating, String type, float price, Pageable pageable) {
+        List<Hotel> availableHotels = hotelRepository.findAvailableHotels(startDate, endDate, city, rating, type, price,pageable);
 
         List<HotelPreview> hotelPreviews = new ArrayList<>();
         for (Hotel hotel : availableHotels) {

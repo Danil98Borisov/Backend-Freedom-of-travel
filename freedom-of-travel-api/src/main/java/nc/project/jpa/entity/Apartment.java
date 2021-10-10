@@ -23,8 +23,9 @@ public class Apartment implements Serializable {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @Column(name = "type")
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "apartment_type_id")
+    private ApartmentType type;
 
     @Column(name = "price")
     private float price;

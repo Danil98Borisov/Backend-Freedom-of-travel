@@ -1,18 +1,12 @@
 package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
-import nc.project.const_enum.ApartmentType;
 import nc.project.jpa.entity.Apartment;
 import nc.project.models.ApartmentDetails;
-import nc.project.jpa.entity.ImageApartment;
 import nc.project.jpa.repository.ApartmentRepository;
-import nc.project.jpa.repository.ImageApartmentRepository;
 import nc.project.service.ApartmentDetailsService;
-import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -22,7 +16,6 @@ import java.util.List;
 public class ApartmentController {
 
     private final ApartmentRepository apartmentRepository;
-    private final ImageApartmentRepository imageApartmentRepository;
     private final ApartmentDetailsService apartmentDetailsService;
 
         /*Apartment*/
@@ -30,6 +23,12 @@ public class ApartmentController {
     public Iterable<Apartment> findAll() {
         return apartmentRepository.findAll();
     }
+
+    @GetMapping("/apart-in-hotel")
+    public List<Apartment> getApartmentInHotel(@RequestParam Long id){
+        return this.apartmentRepository.getApartmentInHotel(id);
+    }
+
 
     @PutMapping("/add")
     Apartment addApartment(@RequestBody Apartment apartment) {
@@ -46,23 +45,7 @@ public class ApartmentController {
         return apartmentRepository.save(apartment);
     }
 
-    @GetMapping("/find")
-    List<Apartment> findAvailableApartments(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                            @RequestParam(required = false, defaultValue = "0") int rating,
-                                            @RequestParam(required = false, defaultValue = "") String city,
-                                            @RequestParam(required = false) ApartmentType type,
-                                            @RequestParam(required = false, defaultValue = "10000000") float price,
-                                            Pageable pageable) {
-        return apartmentRepository.findAvailableApartments(startDate, endDate, city, rating, type != null ? type.name() : "", price, pageable);
-    }
-
-
     /* Details */
-    @PostMapping("/edit/image_and_description")
-    public ImageApartment editApartmentImageAndDescription(@RequestBody ImageApartment imageApartment) {
-        return imageApartmentRepository.save(imageApartment);
-    }
 
     @GetMapping("/details/{id}")
     public ApartmentDetails detailsApartment(@PathVariable("id") Long id) {

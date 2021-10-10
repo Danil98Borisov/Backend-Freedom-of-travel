@@ -65,6 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/hotelPreview/**").permitAll()
                 .antMatchers("/api/apartmentPreview/**").permitAll()
                 .antMatchers("/api/apartment/details/**").permitAll()
+                .antMatchers("/api/apartment/apart-in-hotel/**").permitAll()
                 .antMatchers("/api/admin/**").hasAuthority(ROLE_ADMIN.toString())
                 .antMatchers("/api/advertiser/**").hasAnyAuthority(ROLE_ADMIN.toString(), ROLE_ADVERTISER.toString())
                 .anyRequest().authenticated();
