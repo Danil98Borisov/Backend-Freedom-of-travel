@@ -2,10 +2,11 @@ package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
 import nc.project.jpa.entity.Hotel;
+import nc.project.jpa.entity.HotelUser;
+import nc.project.jpa.repository.HotelUserRepository;
 import nc.project.models.HotelDetails;
 import nc.project.jpa.repository.HotelRepository;
 import nc.project.service.HotelDetailsService;
-import nc.project.service.HotelPreviewService;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class HotelController {
 
     private final HotelRepository hotelRepository;
+    private final HotelUserRepository hotelUserRepository;
     private final HotelDetailsService hotelDetailsService;
 
     @GetMapping("/all")
@@ -37,8 +39,18 @@ public class HotelController {
     }
 
     @GetMapping("/manager-hotel/{email}")
-    public Iterable<Hotel> findReservationByUser(@PathVariable("email") String email) {
-        return hotelRepository.findHotelManagerByUser(email);
+    public Iterable<HotelUser> findHotelByUser(@PathVariable("email") String email) {
+        return hotelUserRepository.findHotelManagerByUser(email);
+    }
+
+    @GetMapping("/user-edit-hotel/{id}")
+    public Iterable<HotelUser> findHotelByUser(@PathVariable("id") int id) {
+        return hotelUserRepository.findUserEditHotel(id);
+    }
+
+    @GetMapping("/manager-hotel/all")
+    public Iterable<HotelUser> findAllHotelByUser() {
+        return hotelUserRepository.findAllHotelManagerByUser();
     }
 
     /*Details*/
