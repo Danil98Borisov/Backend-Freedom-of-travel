@@ -64,6 +64,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/logout/**").permitAll()
                 .antMatchers("/api/hotel/**").permitAll()
+                .antMatchers("/api/hotel/manage-hotel/**").hasAuthority(ROLE_ADVERTISER.toString())
+                .antMatchers("/api/hotel/manage-hotel/all").hasAuthority(ROLE_ADMIN.toString())
                 .antMatchers("/api/hotelPreview/**").permitAll()
                 .antMatchers("/api/apartmentPreview/**").permitAll()
                 .antMatchers("/api/apartment/details/**").permitAll()
