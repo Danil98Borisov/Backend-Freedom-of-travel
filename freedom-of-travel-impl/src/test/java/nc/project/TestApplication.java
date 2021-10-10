@@ -1,10 +1,9 @@
-/*
 package nc.project;
 
 import lombok.RequiredArgsConstructor;
 import nc.project.implement.TestDataLoaderImpl;
 import nc.project.jpa.repository.*;
-import nc.project.service.ApartmentPreviewService;
+import nc.project.service.HotelPreviewService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,19 +20,18 @@ public class TestApplication {
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final TypeRepository typeRepository;
+    private final ApartmentTypeRepository apartmentTypeRepository;
 
     @Bean
-    public ApartmentPreviewService apartmentPreviewService() {
-        return new ApartmentPreviewService(apartmentRepository, imageApartmentRepository);
+    public HotelPreviewService hotelPreviewService() {
+        return new HotelPreviewService(hotelRepository, imageHotelRepository);
     }
 
     @Bean
     public TestDataLoaderImpl testDataLoader() {
-        return new TestDataLoaderImpl(hotelRepository, typeRepository, apartmentRepository, imageApartmentRepository,
+        return new TestDataLoaderImpl(hotelRepository, apartmentTypeRepository, apartmentRepository, imageApartmentRepository,
                 imageHotelRepository, reservationRepository,
                 userRepository, roleRepository,  new BCryptPasswordEncoder());
     }
 
 }
-*/

@@ -1,11 +1,10 @@
-/*
 package nc.project.service;
 
 import lombok.extern.slf4j.Slf4j;
-import nc.project.const_enum.EType;
+import nc.project.const_enum.EApartmentType;
 import nc.project.jpa.entity.*;
 import nc.project.jpa.repository.*;
-import nc.project.models.ApartmentPreview;
+import nc.project.models.HotelPreview;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -27,16 +26,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ApartmentPreviewServiceTest {
 
     @Autowired
-    private ApartmentPreviewService apartmentPreviewService;
-    @Autowired
-    private TestDataLoader testDataLoader;
-
-    @Autowired
     private ApartmentRepository apartmentRepository;
+    @Autowired
+    private ApartmentTypeRepository apartmentTypeRepository;
     @Autowired
     private ImageApartmentRepository imageApartmentRepository;
     @Autowired
     private HotelRepository hotelRepository;
+    @Autowired
+    private HotelPreviewService hotelPreviewService;
     @Autowired
     private ImageHotelRepository imageHotelRepository;
     @Autowired
@@ -45,6 +43,8 @@ class ApartmentPreviewServiceTest {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private TestDataLoader testDataLoader;
 
     @BeforeAll
     public void prepareTestEnv() throws IOException, ParseException {
@@ -57,51 +57,52 @@ class ApartmentPreviewServiceTest {
         List<Reservation> reservations = reservationRepository.findAll();
         List<User> users = userRepository.findAll();
         List<Role> roles = roleRepository.findAll();
+        List<ApartmentType> apartmentTypes = apartmentTypeRepository.findAll();
 
         assertEquals(60, apartments.size());
         assertEquals(179, apartmentImages.size());
         assertEquals(30, hotels.size());
-        assertEquals(89, hotelImages.size());
+        assertEquals(90, hotelImages.size());
         assertEquals(30, reservations.size());
         assertEquals(2, users.size());
         assertEquals(3, roles.size());
+        assertEquals(3, apartmentTypes.size());
     }
 
     @Test
     public void testFindAvailableApartmentsPreview_findSingleApartments(){
-        List<ApartmentPreview> singleApartments = apartmentPreviewService.findAvailableApartmentsPreview(
+        List<HotelPreview> singleApartments = hotelPreviewService.getFilteredHotelPreviews(
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                "", 0, EType.SINGLE.toString(), Float.MAX_VALUE, PageRequest.of(0, 60));
-        assertEquals(16, singleApartments.size());
+                "", 0, EApartmentType.SINGLE.toString(), Float.MAX_VALUE, "DESC", PageRequest.of(0, 60));
+        assertEquals(9, singleApartments.size());
     }
 
     @Test
     public void testFindAvailableApartmentsPreview_findApartmentsByCity(){
-        List<ApartmentPreview> apartmentsInNn = apartmentPreviewService.findAvailableApartmentsPreview(
+        List<HotelPreview> singleApartments = hotelPreviewService.getFilteredHotelPreviews(
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                "NN", 0, "", Float.MAX_VALUE, PageRequest.of(0, 60));
-        assertEquals(7, apartmentsInNn.size());
+                "NN", 0, "", Float.MAX_VALUE, "DESC", PageRequest.of(0, 60));
+        assertEquals(3, singleApartments.size());
     }
 
     @Test
     public void testFindAvailableApartmentsPreview_findApartmentsByPrice(){
-        List<ApartmentPreview> apartmentsWithPrice = apartmentPreviewService.findAvailableApartmentsPreview(
+        List<HotelPreview> singleApartments = hotelPreviewService.getFilteredHotelPreviews(
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                "", 0, "", 77, PageRequest.of(0, 60));
-        assertEquals(35, apartmentsWithPrice.size());
+                "", 0, "", 77, "DESC", PageRequest.of(0, 60));
+        assertEquals(11, singleApartments.size());
     }
 
     @Test
     public void testFindAvailableApartmentsPreview_findApartmentsByRating(){
-        List<ApartmentPreview> apartmentsWithPrice = apartmentPreviewService.findAvailableApartmentsPreview(
+        List<HotelPreview> singleApartments = hotelPreviewService.getFilteredHotelPreviews(
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                "", 6, "", 77, PageRequest.of(0, 60));
-        assertEquals(16, apartmentsWithPrice.size());
+                "", 6, "", Float.MAX_VALUE, "DESC", PageRequest.of(0, 60));
+        assertEquals(6, singleApartments.size());
     }
 
 }
-*/
