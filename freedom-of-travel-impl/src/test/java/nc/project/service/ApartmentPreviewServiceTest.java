@@ -109,4 +109,10 @@ class ApartmentPreviewServiceTest {
         assertEquals(6, singleApartments.size());
     }
 
+    @Test
+    public void testGetHotelAndUserList_findApartmentsByRating(){
+        List<Hotel> singleHotels = hotelRepository.findHotelManagerByUser("advertiserone@mail.ru");
+        assertEquals(10, singleHotels.size());
+    }
+
 }
