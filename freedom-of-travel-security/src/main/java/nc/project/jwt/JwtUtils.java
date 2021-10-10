@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.*;
@@ -31,10 +32,16 @@ public class JwtUtils {
     private final  String AUTHORIZATION_HEADER = "Authorization";
     private final  String PREFIX = "Bearer ";
 
+    public String getJwt(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader(AUTHORIZATION_HEADER);
+        if (authorizationHeader == null || !authorizationHeader.startsWith(PREFIX)) {
+            return null;
+        }
+        return authorizationHeader.replace(PREFIX, "");
+    }
+
     public String generateJwtToken(Authentication authentication) {
-
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
@@ -44,11 +51,18 @@ public class JwtUtils {
                 .compact();
     }
 
+    public String getUserNameFromRequest(HttpServletRequest request) {
+        return getUserNameFromJwtToken(getJwt(request));
+    }
+
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
 
     public boolean validateJwtToken(String authToken) {
+        if (authToken == null) {
+            return false;
+        }
         try {
             Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken).getBody();
             String sessionId = (String) claims.get("session-id");

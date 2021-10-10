@@ -17,6 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import static nc.project.const_enum.ERole.ROLE_ADMIN;
 import static nc.project.const_enum.ERole.ROLE_ADVERTISER;
@@ -24,6 +25,7 @@ import static nc.project.const_enum.ERole.ROLE_ADVERTISER;
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
+@CrossOrigin(origins = "http://localhost:4200")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 

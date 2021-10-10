@@ -54,4 +54,22 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
                                         @Param("price") Float price,
                                         Pageable pageble);
 
+    @Query(value = "select * From hotel_user hu, hotel h, users u" +
+            "        where h.id=hu.hotel_id" +
+            "        and u.id=hu.managed_by_user" +
+            "        and  u.email=:email", nativeQuery = true)
+    List<Hotel> findHotelManagerByUser(@Param("email") String email);
+
+    @Query(value = "select * From hotel_user hu, hotel h, users u" +
+            "        where h.id=hu.hotel_id" +
+            "        and u.id=hu.managed_by_user", nativeQuery = true)
+    List<Hotel> findAllHotelManagerByUser();
+    
+    @Query(value = "select count(*) From hotel_user hu, hotel h, users u" +
+            "        where h.id=hu.hotel_id" +
+            "        and u.id=hu.managed_by_user" +
+            "        and h.id =:id" +
+            "        and u.username=:user", nativeQuery = true)
+    Integer findCountUserHotel(@Param("id") Long id,
+                                   @Param("user") String user);
 }

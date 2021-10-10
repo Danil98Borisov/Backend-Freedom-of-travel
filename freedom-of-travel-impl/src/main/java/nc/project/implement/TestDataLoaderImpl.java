@@ -34,7 +34,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
     private final ReservationRepository reservationRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private  final HotelUserRepository hotelUserRepository;
+    private final HotelUserRepository hotelUserRepository;
 
     private final PasswordEncoder encoder;
 
