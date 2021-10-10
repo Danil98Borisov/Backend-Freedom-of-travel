@@ -27,7 +27,7 @@ import java.util.*;
 public class TestDataLoaderImpl implements TestDataLoader {
 
     private final HotelRepository hotelRepository;
-    private final TypeRepository typeRepository;
+    private final ApartmentTypeRepository typeRepository;
     private final ApartmentRepository apartmentRepository;
     private final ImageApartmentRepository imageApartmentRepository;
     private final ImageHotelRepository imageHotelRepository;
