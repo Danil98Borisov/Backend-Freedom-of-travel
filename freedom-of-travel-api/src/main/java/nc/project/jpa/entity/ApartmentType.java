@@ -3,7 +3,7 @@ package nc.project.jpa.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nc.project.const_enum.EType;
+import nc.project.const_enum.EApartmentType;
 
 import javax.persistence.*;
 
@@ -21,7 +21,7 @@ public class ApartmentType {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "name")
-    private EType name;
+    private EApartmentType name;
 
     public ApartmentType(Long id) {
         this.id = id;

@@ -2,7 +2,7 @@ package nc.project.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nc.project.const_enum.EType;
+import nc.project.const_enum.EApartmentType;
 import nc.project.const_enum.ERole;
 import nc.project.const_enum.ReservationStatus;
 import nc.project.jpa.entity.*;
@@ -522,9 +522,9 @@ public class TestDataLoaderImpl implements TestDataLoader {
     }
     
     public void uploadTypes(){
-        ApartmentType singleType = new ApartmentType(1L, EType.SINGLE);
-        ApartmentType doubleType = new ApartmentType(2L, EType.DOUBLE);
-        ApartmentType tripleType = new ApartmentType(3L, EType.TRIPLE);
+        ApartmentType singleType = new ApartmentType(1L, EApartmentType.SINGLE);
+        ApartmentType doubleType = new ApartmentType(2L, EApartmentType.DOUBLE);
+        ApartmentType tripleType = new ApartmentType(3L, EApartmentType.TRIPLE);
         typeRepository.saveAll(Arrays.asList(singleType, doubleType, tripleType));
     }
 
