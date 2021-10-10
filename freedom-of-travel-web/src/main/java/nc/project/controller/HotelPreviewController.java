@@ -40,4 +40,5 @@ public class HotelPreviewController {
                 PageRequest.of(page.orElse(0), 5)
         );
     }
+
 }

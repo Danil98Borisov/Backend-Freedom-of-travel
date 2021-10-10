@@ -2,7 +2,7 @@ package nc.project.implement;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nc.project.const_enum.EType;
+import nc.project.const_enum.EApartmentType;
 import nc.project.const_enum.ERole;
 import nc.project.const_enum.ReservationStatus;
 import nc.project.jpa.entity.*;
@@ -27,7 +27,7 @@ import java.util.*;
 public class TestDataLoaderImpl implements TestDataLoader {
 
     private final HotelRepository hotelRepository;
-    private final TypeRepository typeRepository;
+    private final ApartmentTypeRepository typeRepository;
     private final ApartmentRepository apartmentRepository;
     private final ImageApartmentRepository imageApartmentRepository;
     private final ImageHotelRepository imageHotelRepository;
@@ -49,7 +49,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
         imageHotelRepository.saveAll(getImageHotelList());
         reservationRepository.saveAll(getReservationList());
     }
-    
+
     public List<Hotel> getHotelList() {
         List<Hotel> hotelList = new ArrayList<>();
         hotelList.add(new Hotel(1L, "Oka", "NN", 7, null));
@@ -198,6 +198,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
         return apartmentList;
     }
+
     public List<ImageApartment> getImageApartmentList() {
         List<ImageApartment> imageApartmentList = new ArrayList<>();
 
@@ -520,11 +521,11 @@ public class TestDataLoaderImpl implements TestDataLoader {
                 Collections.singleton(advertiserRole));
         userRepository.saveAll(Arrays.asList(admin, advertiser));
     }
-    
+
     public void uploadTypes(){
-        ApartmentType singleType = new ApartmentType(1L, EType.SINGLE);
-        ApartmentType doubleType = new ApartmentType(2L, EType.DOUBLE);
-        ApartmentType tripleType = new ApartmentType(3L, EType.TRIPLE);
+        ApartmentType singleType = new ApartmentType(1L, EApartmentType.SINGLE);
+        ApartmentType doubleType = new ApartmentType(2L, EApartmentType.DOUBLE);
+        ApartmentType tripleType = new ApartmentType(3L, EApartmentType.TRIPLE);
         typeRepository.saveAll(Arrays.asList(singleType, doubleType, tripleType));
     }
 
