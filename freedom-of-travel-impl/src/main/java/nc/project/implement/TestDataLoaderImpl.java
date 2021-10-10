@@ -49,7 +49,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
         imageHotelRepository.saveAll(getImageHotelList());
         reservationRepository.saveAll(getReservationList());
     }
-
+    
     public List<Hotel> getHotelList() {
         List<Hotel> hotelList = new ArrayList<>();
         hotelList.add(new Hotel(1L, "Oka", "NN", 7, null));
@@ -198,7 +198,6 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
         return apartmentList;
     }
-
     public List<ImageApartment> getImageApartmentList() {
         List<ImageApartment> imageApartmentList = new ArrayList<>();
 
@@ -520,6 +519,13 @@ public class TestDataLoaderImpl implements TestDataLoader {
         User advertiser = new User(2L, "Advertiser", "advertiser@mail.ru", encoder.encode("advpass"),
                 Collections.singleton(advertiserRole));
         userRepository.saveAll(Arrays.asList(admin, advertiser));
+    }
+    
+    public void uploadTypes(){
+        ApartmentType singleType = new ApartmentType(1L, EApartmentType.SINGLE);
+        ApartmentType doubleType = new ApartmentType(2L, EApartmentType.DOUBLE);
+        ApartmentType tripleType = new ApartmentType(3L, EApartmentType.TRIPLE);
+        typeRepository.saveAll(Arrays.asList(singleType, doubleType, tripleType));
     }
 
     public void uploadTypes(){

@@ -59,6 +59,7 @@ public class HotelPreviewService {
 
             hotelPreviews.add(hotelPreview);
         }
+
         return hotelPreviews;
     }
     public List<HotelPreview> getFilteredHotelPreviews(LocalDate startDate, LocalDate endDate,
