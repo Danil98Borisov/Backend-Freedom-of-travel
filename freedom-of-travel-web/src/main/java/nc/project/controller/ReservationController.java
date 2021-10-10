@@ -33,5 +33,9 @@ public class ReservationController {
     public List<Reservation> findReservationByUser(@PathVariable("email") String email) {
         return reservationRepository.findReservationByUser(email);
     }
+    @PostMapping("/edit")
+    Reservation editReservation(@RequestBody Reservation reservation) {
+        return reservationRepository.save(reservation);
+    }
 
 }
