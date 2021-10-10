@@ -528,11 +528,4 @@ public class TestDataLoaderImpl implements TestDataLoader {
         typeRepository.saveAll(Arrays.asList(singleType, doubleType, tripleType));
     }
 
-    public void uploadTypes(){
-        ApartmentType singleType = new ApartmentType(1L, EApartmentType.SINGLE);
-        ApartmentType doubleType = new ApartmentType(2L, EApartmentType.DOUBLE);
-        ApartmentType tripleType = new ApartmentType(3L, EApartmentType.TRIPLE);
-        typeRepository.saveAll(Arrays.asList(singleType, doubleType, tripleType));
-    }
-
 }
