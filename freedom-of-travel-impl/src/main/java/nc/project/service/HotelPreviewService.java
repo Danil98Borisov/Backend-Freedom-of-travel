@@ -47,17 +47,12 @@ public class HotelPreviewService {
         }
         return image;
     }
-
-    public List<HotelPreview> getFilteredHotelPreviews(LocalDate startDate, LocalDate endDate,
-                                                       String city, int rating, String type, float price, Pageable pageable) {
-        List<Hotel> availableHotels = hotelRepository.findAvailableHotels(startDate, endDate, city, rating, type, price,pageable);
-
+    public List<HotelPreview> getFilteredHotelPreviewsSorted(List<Hotel> availableHotels){
         List<HotelPreview> hotelPreviews = new ArrayList<>();
         for (Hotel hotel : availableHotels) {
+
             HotelPreview hotelPreview = new HotelPreview();
-
             hotelPreview.setHotel(hotel);
-
             ImageHotel image = imageHotelRepository.findImageHotelByHotelIdAndFlag(hotel.getId(), 1);
             hotelPreview.setImageHotel(image);
 
@@ -66,4 +61,15 @@ public class HotelPreviewService {
 
         return hotelPreviews;
     }
+    public List<HotelPreview> getFilteredHotelPreviews(LocalDate startDate, LocalDate endDate,
+                                                       String city, int rating, String type, float price, String sort, Pageable pageable) {
+        if ("DESC".equals(sort)) {
+            List<Hotel> availableHotels = hotelRepository.findAvailableHotelsDesc(startDate, endDate, city, rating, type, price, pageable);
+            return getFilteredHotelPreviewsSorted(availableHotels);
+        } else {
+            List<Hotel> availableHotels = hotelRepository.findAvailableHotelsAsc(startDate, endDate, city, rating, type, price, pageable);
+            return getFilteredHotelPreviewsSorted(availableHotels);
+        }
+    }
+
 }

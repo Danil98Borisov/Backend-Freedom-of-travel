@@ -28,14 +28,17 @@ public class HotelPreviewController {
 
     @GetMapping("/find/preview")
     List<HotelPreview> findAvailableHotelsPreview(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                                          @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                                          @RequestParam(required = false, defaultValue = "0") int rating,
-                                                          @RequestParam(required = false, defaultValue = "") String city,
-                                                          @RequestParam(required = false, defaultValue = "") String type,
-                                                          @RequestParam(required = false, defaultValue = "10000000") float price,
-                                                          @RequestParam Optional<Integer> page) {
-        return hotelPreviewService.getFilteredHotelPreviews(startDate, endDate, city, rating, type, price,
+                                                  @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                  @RequestParam(required = false, defaultValue = "0") int rating,
+                                                  @RequestParam(required = false, defaultValue = "") String city,
+                                                  @RequestParam(required = false, defaultValue = "") String type,
+                                                  @RequestParam(required = false, defaultValue = "10000000") float price,
+                                                  @RequestParam(required = false, defaultValue = "DESC") String sort,
+                                                  @RequestParam Optional<Integer> page) {
+
+        return hotelPreviewService.getFilteredHotelPreviews(startDate, endDate, city, rating, type, price, sort,
                 PageRequest.of(page.orElse(0), 5)
         );
     }
+
 }
