@@ -47,13 +47,12 @@ public class HotelPreviewService {
         }
         return image;
     }
-    public List<HotelPreview> getFilteredHotelPreviewsSORT(List<Hotel> availableHotels){
+    public List<HotelPreview> getFilteredHotelPreviewsSorted(List<Hotel> availableHotels){
         List<HotelPreview> hotelPreviews = new ArrayList<>();
         for (Hotel hotel : availableHotels) {
+
             HotelPreview hotelPreview = new HotelPreview();
-
             hotelPreview.setHotel(hotel);
-
             ImageHotel image = imageHotelRepository.findImageHotelByHotelIdAndFlag(hotel.getId(), 1);
             hotelPreview.setImageHotel(image);
 
@@ -64,13 +63,12 @@ public class HotelPreviewService {
     }
     public List<HotelPreview> getFilteredHotelPreviews(LocalDate startDate, LocalDate endDate,
                                                        String city, int rating, String type, float price, String sort, Pageable pageable) {
-        if ((sort.equals("ASC"))) {
-            List<Hotel> availableHotels = hotelRepository.findAvailableHotelsAsc(startDate, endDate, city, rating, type, price, pageable);
-            return getFilteredHotelPreviewsSORT(availableHotels);
-
-        } else {
+        if ("DESC".equals(sort)) {
             List<Hotel> availableHotels = hotelRepository.findAvailableHotelsDesc(startDate, endDate, city, rating, type, price, pageable);
-            return getFilteredHotelPreviewsSORT(availableHotels);
+            return getFilteredHotelPreviewsSorted(availableHotels);
+        } else {
+            List<Hotel> availableHotels = hotelRepository.findAvailableHotelsAsc(startDate, endDate, city, rating, type, price, pageable);
+            return getFilteredHotelPreviewsSorted(availableHotels);
         }
     }
 
