@@ -1,9 +1,6 @@
 package nc.project.jpa.repository;
 
-import nc.project.jpa.entity.Apartment;
 import nc.project.jpa.entity.Reservation;
-import nc.project.jpa.entity.User;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,6 +17,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
     @Query(value = "select * from reservation r," +
             " users u " +
             "where u.id=r.user_id " +
+            "and r.status='BOOKED'" +
             "and u.email =:email", nativeQuery = true)
     List<Reservation> findReservationByUser(@Param("email") String email);
 
@@ -29,4 +27,13 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
     Integer findBookedApartments(@Param("startDate") LocalDate startDate,
                                              @Param("endDate") LocalDate endDate,
                                              @Param("apartmentId") Long apartmentId);
+    @Query(value = "    select *" +
+            "    from reservation r," +
+            "    apartment ap," +
+            "    users u" +
+            "    where ap.id = r.apartment_id" +
+            "    and u.id = r.user_id" +
+            "    and r.id = :id", nativeQuery = true)
+    Reservation findReservationById(@Param("id") Long id);
+
 }
