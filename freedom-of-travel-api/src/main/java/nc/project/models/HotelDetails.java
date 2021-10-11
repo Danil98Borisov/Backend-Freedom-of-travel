@@ -16,6 +16,6 @@ public class HotelDetails implements Serializable {
 
     public Hotel hotel;
     public List<ImageHotel> hotelImages;
-    public boolean flag;
+    public boolean editAllowed;
 
 }

@@ -29,7 +29,7 @@ public class HotelDetailsService {
 
             hotelDetails.setHotel(hotel);
             hotelDetails.setHotelImages(images);
-            hotelDetails.setFlag(count==0 ? false: true);
+            hotelDetails.setEditAllowed(count != 0);
         });
         return hotelDetails;
     }

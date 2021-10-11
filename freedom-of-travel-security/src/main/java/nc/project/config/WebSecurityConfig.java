@@ -25,7 +25,6 @@ import static nc.project.const_enum.ERole.ROLE_ADVERTISER;
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
-@CrossOrigin(origins = "http://localhost:4200")
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
