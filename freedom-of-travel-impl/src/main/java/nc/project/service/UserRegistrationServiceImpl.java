@@ -9,9 +9,13 @@ import nc.project.jpa.entity.Role;
 import nc.project.jpa.entity.User;
 import nc.project.jpa.repository.RoleRepository;
 import nc.project.jpa.repository.UserRepository;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,9 +27,10 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
+    private final EmailService emailService;
 
     @Override
-    public UserRegistration register(SignupRequest signUpRequest) {
+    public UserRegistration register(SignupRequest signUpRequest, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
         UserRegistration userRegistration = new UserRegistration();
         userRegistration.setSuccessful(false);
 
@@ -45,7 +50,12 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
                 encoder.encode(signUpRequest.getPassword()),
                 resolveUserRoles(signUpRequest.getRole()));
 
+        String randomCode = RandomString.make(64);
+        user.setVerificationCode(randomCode);
+        user.setVerified(false);
         userRepository.save(user);
+
+        sendVerificationEmail(user, getSiteURL(request));
         log.info(String.format("User %s is registered successfully!", user.getUsername()));
 
         userRegistration.setSuccessful(true);
@@ -63,5 +73,15 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
                     roleRepository.findByName(roleName).ifPresent(roles::add));
         }
         return roles;
+    }
+
+    @Override
+    public void sendVerificationEmail(User user, String siteURL) throws MessagingException, UnsupportedEncodingException {
+        emailService.sendMail(user, siteURL);
+    }
+
+    private String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
     }
 }
