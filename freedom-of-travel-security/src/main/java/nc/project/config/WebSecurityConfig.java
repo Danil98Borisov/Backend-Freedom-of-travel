@@ -10,7 +10,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -63,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/logout/**").permitAll()
+                .antMatchers("/api/verify/**", "/api/verify-user-email/**").permitAll()
                 .antMatchers("/api/hotel/**").permitAll()
                 .antMatchers("/api/hotel/manage-hotel/**").hasAuthority(ROLE_ADVERTISER.toString())
                 .antMatchers("/api/hotel/manage-hotel/all").hasAuthority(ROLE_ADMIN.toString())
@@ -77,7 +77,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/verify/**", "/api/send-verify-user-email/**");
-    }
 }

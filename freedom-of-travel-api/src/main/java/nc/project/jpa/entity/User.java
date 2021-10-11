@@ -48,6 +48,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    @Column(name = "verified")
+    private boolean verified;
+
     public User(@NotBlank @Size(max = 20) String username,
                 @NotBlank @Size(max = 50) @Email String email,
                 @NotBlank @Size(max = 120) String password,
