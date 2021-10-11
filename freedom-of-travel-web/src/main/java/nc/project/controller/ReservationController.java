@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.jpa.entity.Reservation;
 import nc.project.jpa.repository.ReservationRepository;
+import nc.project.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ReservationController {
 
 
     private final ReservationRepository reservationRepository;
+    private final ReservationService reservationService;
 
     @GetMapping("/all")
     public Iterable<Reservation> findAll() {
@@ -33,9 +35,9 @@ public class ReservationController {
     public List<Reservation> findReservationByUser(@PathVariable("email") String email) {
         return reservationRepository.findReservationByUser(email);
     }
-    @PostMapping("/edit")
-    Reservation editReservation(@RequestBody Reservation reservation) {
-        return reservationRepository.save(reservation);
+    @GetMapping("/cancel/{id}")
+    Reservation editReservation(@PathVariable("id") Long id) {
+        return reservationService.cancelReservation(id);
     }
 
 }

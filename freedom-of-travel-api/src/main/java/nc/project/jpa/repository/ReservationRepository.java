@@ -27,4 +27,13 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
     Integer findBookedApartments(@Param("startDate") LocalDate startDate,
                                              @Param("endDate") LocalDate endDate,
                                              @Param("apartmentId") Long apartmentId);
+    @Query(value = "    select *" +
+            "    from reservation r," +
+            "    apartment ap," +
+            "    users u" +
+            "    where ap.id = r.apartment_id" +
+            "    and u.id = r.user_id" +
+            "    and r.id = :id", nativeQuery = true)
+    Reservation findReservationById(@Param("id") Long id);
+
 }

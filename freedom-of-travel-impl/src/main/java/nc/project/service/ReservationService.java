@@ -48,5 +48,17 @@ public class ReservationService {
 
         return reservationRepository.save(reservation);
     };
+    public Reservation cancelReservation(Long id){
+        Reservation reservation = new Reservation();
+        reservation.setId(id);
+        reservation.setStatus("CANCELLED");
+        reservation.setEnd_date(reservationRepository.findReservationById(id).getEnd_date());
+        reservation.setStart_date(reservationRepository.findReservationById(id).getStart_date());
+        reservation.setApartment(reservationRepository.findReservationById(id).getApartment());
+        reservation.setUser(reservationRepository.findReservationById(id).getUser());
+
+        return reservationRepository.save(reservation);
+    };
+
 
 }
