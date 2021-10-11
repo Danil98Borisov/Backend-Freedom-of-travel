@@ -36,6 +36,8 @@ class ApartmentPreviewServiceTest {
     @Autowired
     private HotelPreviewService hotelPreviewService;
     @Autowired
+    private HotelUserRepository hotelUserRepository;
+    @Autowired
     private ImageHotelRepository imageHotelRepository;
     @Autowired
     private ReservationRepository reservationRepository;
@@ -58,15 +60,17 @@ class ApartmentPreviewServiceTest {
         List<User> users = userRepository.findAll();
         List<Role> roles = roleRepository.findAll();
         List<ApartmentType> apartmentTypes = apartmentTypeRepository.findAll();
+        List<HotelUser> hotelUser = hotelUserRepository.findAll();
 
         assertEquals(60, apartments.size());
         assertEquals(179, apartmentImages.size());
         assertEquals(30, hotels.size());
         assertEquals(90, hotelImages.size());
         assertEquals(30, reservations.size());
-        assertEquals(2, users.size());
+        assertEquals(4, users.size());
         assertEquals(3, roles.size());
         assertEquals(3, apartmentTypes.size());
+        assertEquals(30, hotelUser.size());
     }
 
     @Test
@@ -103,6 +107,12 @@ class ApartmentPreviewServiceTest {
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 "", 6, "", Float.MAX_VALUE, "DESC", PageRequest.of(0, 60));
         assertEquals(6, singleApartments.size());
+    }
+
+    @Test
+    public void testGetHotelAndUserList_findApartmentsByRating(){
+        List<Hotel> singleHotels = hotelRepository.findHotelManagerByUser("advertiserone@mail.ru");
+        assertEquals(10, singleHotels.size());
     }
 
 }

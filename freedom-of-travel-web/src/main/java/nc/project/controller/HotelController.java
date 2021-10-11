@@ -2,11 +2,14 @@ package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
 import nc.project.jpa.entity.Hotel;
+import nc.project.jpa.repository.HotelUserRepository;
 import nc.project.models.HotelDetails;
 import nc.project.jpa.repository.HotelRepository;
 import nc.project.service.HotelDetailsService;
-import nc.project.service.HotelPreviewService;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @RestController
@@ -16,8 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class HotelController {
 
     private final HotelRepository hotelRepository;
+    private final HotelUserRepository hotelUserRepository;
     private final HotelDetailsService hotelDetailsService;
-    private final HotelPreviewService hotelService;
 
     @GetMapping("/all")
     public Iterable<Hotel> findAll() {
@@ -37,10 +40,20 @@ public class HotelController {
         hotelRepository.deleteById(id);
     }
 
+    @GetMapping("/manage-hotel/{email}")
+    public List<Hotel> findHotelByUser(@PathVariable("email") String email) {
+        return hotelRepository.findHotelManagerByUser(email);
+    }
+
+    @GetMapping("/manage-hotel/all")
+    public List<Hotel> findAllHotelByUser() {
+        return hotelRepository.findAllHotelManagerByUser();
+    }
+
     /*Details*/
     @GetMapping("/details/{id}")
-    public HotelDetails detailsHotel(@PathVariable("id") Long id) {
-        return hotelDetailsService.getHotelDetails(id);
+    public HotelDetails detailsHotel(@PathVariable("id") Long hotelId, HttpServletRequest request) {
+        return hotelDetailsService.getHotelDetails(hotelId, request);
     }
 
     @PostMapping("/details/edit")

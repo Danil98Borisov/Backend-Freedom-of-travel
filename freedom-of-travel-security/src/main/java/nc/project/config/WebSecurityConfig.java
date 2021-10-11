@@ -17,6 +17,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import static nc.project.const_enum.ERole.ROLE_ADMIN;
 import static nc.project.const_enum.ERole.ROLE_ADVERTISER;
@@ -62,6 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/logout/**").permitAll()
                 .antMatchers("/api/hotel/**").permitAll()
+                .antMatchers("/api/hotel/manage-hotel/**").hasAuthority(ROLE_ADVERTISER.toString())
+                .antMatchers("/api/hotel/manage-hotel/all").hasAuthority(ROLE_ADMIN.toString())
                 .antMatchers("/api/hotelPreview/**").permitAll()
                 .antMatchers("/api/apartmentPreview/**").permitAll()
                 .antMatchers("/api/apartment/details/**").permitAll()
