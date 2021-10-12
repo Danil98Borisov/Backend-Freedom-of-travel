@@ -13,6 +13,16 @@ import java.util.List;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 
+    @Query(value = "select *" +
+            "FROM reservation r," +
+            "     users u" +
+            " WHERE u.id = r.user_id" +
+            "  and r.id = (select MAX(r.id)" +
+            "              from reservation r," +
+            "                   users u" +
+            "              where u.id = r.user_id" +
+            "                and u.email = :email)", nativeQuery = true)
+    Reservation findEmail(@Param("email") String email);
 
     @Query(value = "select * from reservation r," +
             " users u " +
