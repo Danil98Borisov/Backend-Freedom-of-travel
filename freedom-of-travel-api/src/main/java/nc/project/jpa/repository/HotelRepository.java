@@ -24,7 +24,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
             " (select 1 from reservation resrv " +
             "   where resrv.start_date >= :startDate " +
             "   and resrv.end_date <= :endDate " +
-            "   and resrv.apartment_id = apart.id)" +
+            "   and resrv.apartment_id = apart.id" +
+            "   and resrv.status='BOOKED')" +
             "ORDER BY h.rating DESC, h.name ", nativeQuery = true)
     List<Hotel> findAvailableHotelsDesc(@Param("startDate") LocalDate startDate,
                                         @Param("endDate") LocalDate endDate,
@@ -44,7 +45,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
             " (select 1 from reservation resrv " +
             "   where resrv.start_date >= :startDate " +
             "   and resrv.end_date <= :endDate " +
-            "   and resrv.apartment_id = apart.id)" +
+            "   and resrv.apartment_id = apart.id" +
+            "   and resrv.status='BOOKED')" +
             "ORDER BY h.rating ASC, h.name ", nativeQuery = true)
     List<Hotel> findAvailableHotelsAsc(@Param("startDate") LocalDate startDate,
                                         @Param("endDate") LocalDate endDate,
