@@ -19,6 +19,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByEmail(String email);
 
+    User findUserById(Long id);
+
     @Query(value = "select * from users where email = :email ", nativeQuery = true)
     User findUserByEmail(@Param("email") String email);
 
