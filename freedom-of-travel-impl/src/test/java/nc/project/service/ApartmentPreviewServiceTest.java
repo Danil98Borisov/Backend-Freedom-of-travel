@@ -79,7 +79,7 @@ class ApartmentPreviewServiceTest {
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 "", 0, EApartmentType.SINGLE.toString(), Float.MAX_VALUE, "DESC", PageRequest.of(0, 60));
-        assertEquals(9, singleApartments.size());
+        assertEquals(15, singleApartments.size());
     }
 
     @Test
@@ -97,7 +97,7 @@ class ApartmentPreviewServiceTest {
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 "", 0, "", 77, "DESC", PageRequest.of(0, 60));
-        assertEquals(11, singleApartments.size());
+        assertEquals(24, singleApartments.size());
     }
 
     @Test
@@ -106,7 +106,7 @@ class ApartmentPreviewServiceTest {
                 LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse("2026-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 "", 6, "", Float.MAX_VALUE, "DESC", PageRequest.of(0, 60));
-        assertEquals(6, singleApartments.size());
+        assertEquals(17, singleApartments.size());
     }
 
     @Test
