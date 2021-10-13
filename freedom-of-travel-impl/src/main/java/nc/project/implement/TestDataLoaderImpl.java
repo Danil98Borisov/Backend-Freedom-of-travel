@@ -85,6 +85,11 @@ public class TestDataLoaderImpl implements TestDataLoader {
         hotelList.add(new Hotel(28L, "Sky", "Kazan", 9, null));
         hotelList.add(new Hotel(29L, "Mailovo", "MSC", 2, null));
         hotelList.add(new Hotel(30L, "Karely", "Karelia", 10, null));
+        hotelList.add(new Hotel(31L, "Premium", "NiNo", 10, null));
+        hotelList.add(new Hotel(32L, "Box", "MSC", 8, null));
+        hotelList.add(new Hotel(33L, "People", "SPB", 7, null));
+        hotelList.add(new Hotel(34L, "AnimalHotel", "NiNo", 6, null));
+        hotelList.add(new Hotel(34L, "Happy", "LA", 4, null));
 
         for (Hotel hotel : hotelList) {
             hotel.setDescription(hotel.getId() + " " + hotel.getCity() + " " + hotel.getRating() + " " + hotel.getHotelName());
@@ -196,7 +201,7 @@ public class TestDataLoaderImpl implements TestDataLoader {
         apartmentList.add(new Apartment(60L, new Hotel(3L), new ApartmentType(3L), 324, null));
 
         for (Apartment apartment : apartmentList) {
-            apartment.setDescription(apartment.getId() + " " + apartment.getType() + " " + apartment.getPrice() + " " + apartment.getHotel().getHotelName());
+            apartment.setDescription(apartment.getId() + " " + apartment.getPrice() + " " + apartment.getHotel().getHotelName());
         }
 
         return apartmentList;
@@ -384,6 +389,97 @@ public class TestDataLoaderImpl implements TestDataLoader {
         imageApartmentList.add(new ImageApartment(178L, new Hotel(20L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
         imageApartmentList.add(new ImageApartment(179L, new Hotel(20L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
         imageApartmentList.add(new ImageApartment(180L, new Hotel(20L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(181L, new Hotel(21L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(182L, new Hotel(21L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(183L, new Hotel(21L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(184L, new Hotel(21L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(185L, new Hotel(21L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(186L, new Hotel(21L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(187L, new Hotel(21L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(188L, new Hotel(21L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(189L, new Hotel(21L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(190L, new Hotel(22L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(191L, new Hotel(22L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(192L, new Hotel(22L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(193L, new Hotel(22L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(194L, new Hotel(22L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(195L, new Hotel(22L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(196L, new Hotel(22L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(197L, new Hotel(22L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(198L, new Hotel(22L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(199L, new Hotel(23L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(200L, new Hotel(23L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(201L, new Hotel(23L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(202L, new Hotel(23L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(203L, new Hotel(23L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(204L, new Hotel(23L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(205L, new Hotel(23L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(206L, new Hotel(23L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(207L, new Hotel(23L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(208L, new Hotel(24L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(209L, new Hotel(24L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(210L, new Hotel(24L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(211L, new Hotel(24L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(212L, new Hotel(24L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(213L, new Hotel(24L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(214L, new Hotel(24L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(215L, new Hotel(24L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(216L, new Hotel(24L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(217L, new Hotel(25L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(218L, new Hotel(25L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(219L, new Hotel(25L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(220L, new Hotel(25L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(221L, new Hotel(25L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(222L, new Hotel(25L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(223L, new Hotel(25L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(224L, new Hotel(25L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(225L, new Hotel(25L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(226L, new Hotel(26L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(227L, new Hotel(26L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(228L, new Hotel(26L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(229L, new Hotel(26L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(230L, new Hotel(26L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(231L, new Hotel(26L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(232L, new Hotel(26L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(233L, new Hotel(26L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(234L, new Hotel(26L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(235L, new Hotel(27L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(236L, new Hotel(27L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(237L, new Hotel(27L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(238L, new Hotel(27L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(239L, new Hotel(27L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(240L, new Hotel(27L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(241L, new Hotel(27L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(242L, new Hotel(27L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(243L, new Hotel(27L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(244L, new Hotel(28L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(245L, new Hotel(28L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(246L, new Hotel(28L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(247L, new Hotel(28L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(248L, new Hotel(28L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(249L, new Hotel(28L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(250L, new Hotel(28L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(251L, new Hotel(28L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(252L, new Hotel(28L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(253L, new Hotel(29L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(254L, new Hotel(29L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(255L, new Hotel(29L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(256L, new Hotel(29L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(257L, new Hotel(29L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(258L, new Hotel(29L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(259L, new Hotel(29L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(260L, new Hotel(29L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(261L, new Hotel(29L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(262L, new Hotel(30L), new ApartmentType(1L), convertApartmentImage("apartment_58_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(263L, new Hotel(30L), new ApartmentType(1L), convertApartmentImage("apartment_58_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(264L, new Hotel(30L), new ApartmentType(1L), convertApartmentImage("apartment_58_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(265L, new Hotel(30L), new ApartmentType(2L), convertApartmentImage("apartment_59_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(266L, new Hotel(30L), new ApartmentType(2L), convertApartmentImage("apartment_59_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(267L, new Hotel(30L), new ApartmentType(2L), convertApartmentImage("apartment_59_3.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(268L, new Hotel(30L), new ApartmentType(3L), convertApartmentImage("apartment_60_1.jpg"), 1));
+        imageApartmentList.add(new ImageApartment(269L, new Hotel(30L), new ApartmentType(3L), convertApartmentImage("apartment_60_2.jpg"), 0));
+        imageApartmentList.add(new ImageApartment(270L, new Hotel(30L), new ApartmentType(3L), convertApartmentImage("apartment_60_3.jpg"), 0));
+        
 
         return imageApartmentList;
     }
@@ -490,7 +586,6 @@ public class TestDataLoaderImpl implements TestDataLoader {
 
         hotelAndUserLis.add(new HotelUser(1L, new Hotel(1L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(2L, new Hotel(2L),new User(2L)));
-        hotelAndUserLis.add(new HotelUser(3L, new Hotel(3L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(3L, new Hotel(3L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(4L, new Hotel(4L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(5L, new Hotel(5L),new User(2L)));

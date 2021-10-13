@@ -63,8 +63,8 @@ class ApartmentPreviewServiceTest {
         List<HotelUser> hotelUser = hotelUserRepository.findAll();
 
         assertEquals(60, apartments.size());
-        assertEquals(179, apartmentImages.size());
-        assertEquals(30, hotels.size());
+        assertEquals(269, apartmentImages.size());
+        assertEquals(34, hotels.size());
         assertEquals(90, hotelImages.size());
         assertEquals(30, reservations.size());
         assertEquals(4, users.size());

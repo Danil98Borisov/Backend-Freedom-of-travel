@@ -33,7 +33,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
 
     @Query(value = "Select count(*) from reservation where " +
             "((:startDate BETWEEN start_date AND end_date) " +
-            "OR (:endDate BETWEEN start_date AND end_date)) and apartment_id = :apartmentId", nativeQuery = true)
+            "OR (:endDate BETWEEN start_date AND end_date)) " +
+            "and status='BOOKED' " +
+            "and apartment_id = :apartmentId", nativeQuery = true)
     Integer findBookedApartments(@Param("startDate") LocalDate startDate,
                                              @Param("endDate") LocalDate endDate,
                                              @Param("apartmentId") Long apartmentId);
