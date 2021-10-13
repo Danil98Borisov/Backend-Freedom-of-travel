@@ -2,14 +2,17 @@ package nc.project.controller;
 
 import lombok.RequiredArgsConstructor;
 import nc.project.jpa.entity.Hotel;
+import nc.project.jpa.entity.Reservation;
 import nc.project.jpa.repository.HotelUserRepository;
 import nc.project.models.HotelDetails;
 import nc.project.jpa.repository.HotelRepository;
 import nc.project.service.HotelDetailsService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -48,6 +51,12 @@ public class HotelController {
     @GetMapping("/manage-hotel/all")
     public List<Hotel> findAllHotelByUser() {
         return hotelRepository.findAllHotelManagerByUser();
+    }
+
+    @GetMapping("/all/paginated")
+    public List<Hotel> findAll(@RequestParam Optional<Integer> pageNumber,
+                                     @RequestParam Optional<Integer> pageSize) {
+        return hotelRepository.findAllPaginated(PageRequest.of(pageNumber.orElse(0), pageSize.orElse(10)));
     }
 
     /*Details*/

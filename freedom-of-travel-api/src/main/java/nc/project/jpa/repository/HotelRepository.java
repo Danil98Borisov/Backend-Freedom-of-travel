@@ -1,6 +1,7 @@
 package nc.project.jpa.repository;
 
 import nc.project.jpa.entity.Hotel;
+import nc.project.jpa.entity.Reservation;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -74,4 +75,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
             "        and u.username=:user", nativeQuery = true)
     Integer findCountUserHotel(@Param("id") Long id,
                                    @Param("user") String user);
+
+    @Query(value = "select * from hotel", nativeQuery = true)
+    List<Hotel> findAllPaginated(Pageable pageable);
 }
