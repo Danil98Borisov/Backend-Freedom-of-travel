@@ -1,6 +1,8 @@
 package nc.project.jpa.repository;
 
+import nc.project.jpa.entity.Reservation;
 import nc.project.jpa.entity.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -30,4 +32,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select * from users " +
             "where id not in (select user_id from user_roles where role_id = 3)", nativeQuery = true)
     List<User> findNonAdmins();
+
+    @Query(value = "select * from users", nativeQuery = true)
+    List<User> findAllPaginated(Pageable pageable);
 }
