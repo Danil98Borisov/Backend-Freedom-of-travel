@@ -8,20 +8,29 @@ import nc.project.jpa.repository.RoleRepository;
 import nc.project.jpa.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public User makeUserAdmin(Long user_id){
-        Role adminRole = new Role(3L, ERole.ROLE_ADMIN);
-
-        User role = userRepository.findUserById(user_id);
-        role.setRoles(Collections.singleton(adminRole));
-
-        return userRepository.save(role);
+    public User makeUserAdmin(Long userId){
+        User user = userRepository.findUserById(userId);
+        if (user != null) {
+            Optional<Role> adminRole = roleRepository.findByName(ERole.ROLE_ADMIN);
+            if (adminRole.isPresent()) {
+                user.setRoles(new HashSet<>(Arrays.asList(adminRole.get())));
+                return userRepository.save(user);
+            } else {
+                throw new IllegalStateException(String.format("Can not update user %s, admin role is not found", userId));
+            }
+        } else {
+            throw new IllegalArgumentException(String.format("Can not update user role, user with id = %s is not found", userId));
+        }
     };
 }
