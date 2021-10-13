@@ -38,8 +38,8 @@ public class EmailReservationService {
         helper.setSubject(SUBJECT);
 
         contentReservation = contentReservation.replace("{{user-name}}", reservation.getUser().getUsername());
-        contentReservation = contentReservation.replace("{{start-date}}", reservation.getStart_date().toString());
-        contentReservation = contentReservation.replace("{{end-date}}", reservation.getEnd_date().toString());
+        contentReservation = contentReservation.replace("{{start-date}}", reservation.getStartDate().toString());
+        contentReservation = contentReservation.replace("{{end-date}}", reservation.getEndDate().toString());
         contentReservation = contentReservation.replace("{{type}}", reservation.getApartment().getType().getName().toString());
         contentReservation = contentReservation.replace("{{hotel}}", reservation.getApartment().getHotel().getHotelName());
         contentReservation = contentReservation.replace("{{city}}", reservation.getApartment().getHotel().getCity());

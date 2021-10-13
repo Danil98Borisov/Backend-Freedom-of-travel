@@ -9,6 +9,8 @@ import nc.project.models.ReservationRequest;
 import nc.project.models.ReservationResponse;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class ReservationService {
@@ -41,16 +43,19 @@ public class ReservationService {
         Reservation reservation = new Reservation();
 
         reservation.setStatus("BOOKED");
-        reservation.setEnd_date(reservationRequest.getEndDate());
-        reservation.setStart_date(reservationRequest.getStartDate());
+        reservation.setEndDate(reservationRequest.getEndDate());
+        reservation.setStartDate(reservationRequest.getStartDate());
         reservation.setApartment(apartmentRepository.findApartmentById(reservationRequest.getApartmentId()));
         reservation.setUser(userRepository.findUserByEmail(reservationRequest.getBookingBy()));
+        reservation.setReservationDate(LocalDateTime.now());
 
         return reservationRepository.save(reservation);
     };
-    public Reservation cancelReservation(Long id){
+    public Reservation cancelReservation(Long id, String cancelledBy){
         Reservation reservation = reservationRepository.findReservationById(id);
         reservation.setStatus("CANCELLED");
+        reservation.setModifiedWhen(LocalDateTime.now());
+        reservation.setModifiedBy(cancelledBy);
 
         return reservationRepository.save(reservation);
     };

@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -133,6 +134,11 @@ public class TestDataLoaderImpl implements TestDataLoader {
         reservationList.add(new Reservation(29L, new Apartment(31L), new User(2L), LocalDate.parse("2021-12-03", DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-12-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
         reservationList.add(new Reservation(30L, new Apartment(11L), new User(2L), LocalDate.parse("2021-12-20", DateTimeFormatter.ofPattern("yyyy-MM-dd")), LocalDate.parse("2021-12-25", DateTimeFormatter.ofPattern("yyyy-MM-dd")), ReservationStatus.BOOKED.name()));
 
+        reservationList.forEach(reservation -> {
+            reservation.setReservationDate(LocalDateTime.now());
+            reservation.setModifiedWhen(LocalDateTime.now());
+            reservation.setModifiedBy("system");
+        });
         return reservationList;
 
     }
