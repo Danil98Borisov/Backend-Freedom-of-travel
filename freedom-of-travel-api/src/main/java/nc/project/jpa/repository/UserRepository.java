@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -25,4 +26,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserByEmail(@Param("email") String email);
 
     User findByVerificationCode(String code);
+
+    @Query(value = "select * from users " +
+            "where id not in (select user_id from user_roles where role_id = 3)", nativeQuery = true)
+    List<User> findNonAdmins();
 }

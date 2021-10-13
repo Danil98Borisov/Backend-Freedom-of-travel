@@ -23,7 +23,12 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/update-roleAdmin/{id}")
+    @GetMapping("/all-non-admin")
+    public List<User> findAllNonAdmins() {
+        return userRepository.findNonAdmins();
+    }
+
+    @GetMapping("/make-admin/{id}")
     public User findReservationByUser(@PathVariable("id") Long id) {
         return userService.makeUserAdmin(id);
     }
