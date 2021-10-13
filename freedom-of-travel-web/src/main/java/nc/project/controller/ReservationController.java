@@ -43,9 +43,9 @@ public class ReservationController {
         return reservationService.makeReservation(reservationRequest);
     }
 
-    @GetMapping("/cancel/{id}")
-    Reservation editReservation(@PathVariable("id") Long id) {
-        return reservationService.cancelReservation(id);
+    @PostMapping("/cancel/{id}")
+    Reservation editReservation(@PathVariable("id") Long id, @RequestBody String cancelledBy) {
+        return reservationService.cancelReservation(id, cancelledBy);
     }
 
 }

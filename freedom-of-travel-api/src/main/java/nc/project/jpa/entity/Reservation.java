@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table( name = "reservation")
@@ -28,13 +29,30 @@ public class Reservation {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "start_date")
-    private LocalDate start_date;
-
-    @Column(name = "end_date")
-    private LocalDate end_date;
-
     @Column(name = "status")
     private String status;
 
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
+    @Column(name = "reservationDate")
+    private LocalDateTime reservationDate;
+
+    @Column(name = "modifiedWhen")
+    private LocalDateTime modifiedWhen;
+
+    @Column(name = "modifiedBy")
+    private String modifiedBy;
+
+    public Reservation(Long id, Apartment apartment, User user, LocalDate startDate, LocalDate endDate, String status) {
+        this.id = id;
+        this.apartment = apartment;
+        this.user = user;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
 }
