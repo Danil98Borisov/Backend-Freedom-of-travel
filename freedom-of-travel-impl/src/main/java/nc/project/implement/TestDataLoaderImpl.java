@@ -491,7 +491,6 @@ public class TestDataLoaderImpl implements TestDataLoader {
         hotelAndUserLis.add(new HotelUser(1L, new Hotel(1L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(2L, new Hotel(2L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(3L, new Hotel(3L),new User(2L)));
-        hotelAndUserLis.add(new HotelUser(3L, new Hotel(3L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(4L, new Hotel(4L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(5L, new Hotel(5L),new User(2L)));
         hotelAndUserLis.add(new HotelUser(6L, new Hotel(6L),new User(2L)));
