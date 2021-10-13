@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nc.project.jpa.entity.Reservation;
 import nc.project.jpa.repository.ReservationRepository;
+import nc.project.models.ReservationRequest;
+import nc.project.models.ReservationResponse;
 import nc.project.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +37,12 @@ public class ReservationController {
     public List<Reservation> findReservationByUser(@PathVariable("email") String email) {
         return reservationRepository.findReservationByUser(email);
     }
+
+    @PostMapping("/add")
+    ReservationResponse addReservation(@RequestBody ReservationRequest reservationRequest) {
+        return reservationService.makeReservation(reservationRequest);
+    }
+
     @GetMapping("/cancel/{id}")
     Reservation editReservation(@PathVariable("id") Long id) {
         return reservationService.cancelReservation(id);

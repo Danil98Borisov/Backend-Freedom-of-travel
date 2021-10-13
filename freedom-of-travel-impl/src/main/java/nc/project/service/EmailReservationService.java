@@ -20,7 +20,7 @@ public class EmailReservationService {
     private String from;
     private final String SUBJECT = "You have successfully booked";
     private String contentReservation = "<h3>Dear, {{user-name}},</h3>"
-            + "<h4>You have successfully booked an apartment in the {{hotel}}of the city {{city}}.</h4>"
+            + "<h4>You have successfully booked an apartment in the {{hotel}} of the city {{city}}.</h4>"
             + "Apartment type: {{type}},<br>"
             + "Start date: {{start-date}},<br>"
             + "End date: {{end-date}},<br><br>"
