@@ -7,9 +7,11 @@ import nc.project.jpa.repository.ReservationRepository;
 import nc.project.models.ReservationRequest;
 import nc.project.models.ReservationResponse;
 import nc.project.service.ReservationService;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -26,6 +28,12 @@ public class ReservationController {
     @GetMapping("/all")
     public Iterable<Reservation> findAll() {
         return reservationRepository.findAll();
+    }
+
+    @GetMapping("/all/paginated")
+    public List<Reservation> findAll(@RequestParam Optional<Integer> pageNumber,
+                                     @RequestParam Optional<Integer> pageSize) {
+        return reservationRepository.findAllPaginated(PageRequest.of(pageNumber.orElse(0), pageSize.orElse(10)));
     }
 
     @DeleteMapping("/delete/{id}")
